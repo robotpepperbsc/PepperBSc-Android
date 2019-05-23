@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
 
@@ -23,6 +24,8 @@ public class IpConnectionFragment extends Fragment {
         connectB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity(),"Clicked!",Toast.LENGTH_SHORT).show();
+
                 //TODO implement action when connect button is clicked
             }
         });

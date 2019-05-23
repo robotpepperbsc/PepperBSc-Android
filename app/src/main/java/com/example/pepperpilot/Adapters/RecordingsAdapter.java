@@ -54,6 +54,7 @@ public class RecordingsAdapter extends RecyclerView.Adapter<RecordingsAdapter.My
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"Delete button clicked!",Toast.LENGTH_SHORT).show();
+                //TODO implement delete button action
             }
         });
         
@@ -61,6 +62,7 @@ public class RecordingsAdapter extends RecyclerView.Adapter<RecordingsAdapter.My
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Recording card clicked!", Toast.LENGTH_SHORT).show();
+                //TODO implement on card click action
             }
         });
 
