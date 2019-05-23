@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:id="@+id/nav_connection"
+
+        android:title="IP connection"
+        android:icon="@drawable/ic_settings_remote_black_24dp"
+        />
+
+
+    <item android:title="Improvization">
+        <menu>
+            <item
+                android:id="@+id/nav_speech"
+                android:icon="@drawable/ic_record_voice_over_black_24dp"
+                android:title="Speech" />
+            <item
+                android:id="@+id/nav_movement"
+                android:icon="@drawable/ic_directions_walk_black_24dp"
+                android:title="Movement" />
+            <item
+                android:id="@+id/nav_display_on_screen"
+                android:icon="@drawable/ic_cast_black_24dp"
+                android:title="Display on the screen" />
+        </menu>
+
+
+    </item>
+
+    <item android:title="Other">
+            <menu>
+                <item android:id="@+id/nav_scenarios"
+                    android:icon="@drawable/ic_assignment_black_24dp"
+                    android:title="Scenarios"/>
+
+                <item android:id="@+id/nav_recordings"
+                    android:icon="@drawable/ic_movie_black_24dp"
+                    android:title="Recordings"/>
+
+            <item android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings"/>
+        </menu>
+    </item>
+
+
+
+
+</menu>
