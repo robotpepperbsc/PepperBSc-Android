@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.example.pepperpilot.fragments.DisplayOnScreenFragment;
 import com.example.pepperpilot.fragments.IpConnectionFragment;
 import com.example.pepperpilot.fragments.MovementFragment;
+import com.example.pepperpilot.fragments.RecordingsFragment;
 import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
 import com.example.pepperpilot.fragments.SpeechFragmeent;
@@ -85,6 +86,11 @@ public class MainActivity extends AppCompatActivity
         } else if(id == R.id.nav_settings) {
             setTitle("Settings");
             SettingsFragment fragment = new SettingsFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
+        } else if(id == R.id.nav_recordings) {
+            setTitle("Recordings");
+            RecordingsFragment fragment = new RecordingsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
         } else if(id == R.id.nav_scenarios) {
