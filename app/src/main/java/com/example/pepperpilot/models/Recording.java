@@ -1,6 +1,8 @@
 package com.example.pepperpilot.models;
 
-public class Recording extends Task {
+import com.example.pepperpilot.enums.TaskType;
+
+public class Recording {
     private String title;
     private String recordDateTime;
 

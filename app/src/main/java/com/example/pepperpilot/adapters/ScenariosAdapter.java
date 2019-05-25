@@ -24,6 +24,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nameTV;
+        TextView descriptionTV;
         ImageButton editB;
         ImageButton deleteB;
 
@@ -32,6 +33,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             nameTV = view.findViewById(R.id.textViewScenarioName);
             editB = view.findViewById(R.id.imageButtonEdit);
             deleteB = view.findViewById(R.id.imageButtonDelete);
+            descriptionTV = view.findViewById(R.id.textViewScenarioDescription);
         }
     }
 
@@ -50,6 +52,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
     @Override
     public void onBindViewHolder(final ScenariosAdapter.MyViewHolder holder, final int position) {
         holder.nameTV.setText(scenarioList.get(position).getName());
+        holder.descriptionTV.setText(scenarioList.get(position).getDescription());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,9 +28,9 @@ public class ScenariosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_scenarios,container,false);
 
         scenarioList = new ArrayList<>();
-        scenarioList.add(new Scenario("Pokaz robota nr 1"));
-        scenarioList.add(new Scenario("Pokaz robota nr 2"));
-        scenarioList.add(new Scenario("Scenariusz 3"));
+        scenarioList.add(new Scenario("Pokaz robota nr 1","To jest jakiś przykładowy krotki opis scenariusz. Możesz tu napisac jakiego typu to scenariusz itp."));
+        scenarioList.add(new Scenario("Pokaz robota nr 2","To jest jakiś przykładowy krotki opis scenariusz. Możesz tu napisac jakiego typu to scenariusz itp."));
+        scenarioList.add(new Scenario("Scenariusz 3","To jest jakiś przykładowy krotki opis scenariusz. Możesz tu napisac jakiego typu to scenariusz itp."));
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewScenarios);
         floatingActionButton = view.findViewById(R.id.floatingActionButtonAdScenario);

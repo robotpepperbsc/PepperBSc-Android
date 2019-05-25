@@ -10,7 +10,7 @@ import com.example.pepperpilot.R;
 import com.example.pepperpilot.enums.Mode;
 import com.example.pepperpilot.fragments.CreateScenarioFragment;
 import com.example.pepperpilot.fragments.EditScenarioFragment;
-import com.example.pepperpilot.fragments.ScenarioWorkshopsFragment;
+import com.example.pepperpilot.fragments.ScenarioTasksFragment;
 
 public class ScenariosActivity extends AppCompatActivity {
     private Mode mode;
@@ -22,6 +22,8 @@ public class ScenariosActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mode = (Mode)intent.getSerializableExtra("mode");
+
+
 
         if(mode.equals(Mode.EDIT)) {
             String name = intent.getStringExtra("name");
@@ -52,7 +54,7 @@ public class ScenariosActivity extends AppCompatActivity {
 
     private void handleShow(String name) {
         setTitle(name);
-        setFragment(new ScenarioWorkshopsFragment());
+        setFragment(new ScenarioTasksFragment());
     }
 
     private void setFragment(Fragment fragment) {

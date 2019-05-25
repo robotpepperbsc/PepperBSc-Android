@@ -4,13 +4,15 @@ import com.example.pepperpilot.enums.TaskType;
 
 import java.util.List;
 
-public class Scenario extends Task {
+public class Scenario{
     private String name;
     private String lastDateTimeEdited;
+    private String description;
     private List<TaskType> tasks;
 
-    public Scenario(String name) {
+    public Scenario(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public String getName() {
@@ -35,6 +37,14 @@ public class Scenario extends Task {
 
     public void setTasks(List<TaskType> tasks) {
         this.tasks = tasks;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
