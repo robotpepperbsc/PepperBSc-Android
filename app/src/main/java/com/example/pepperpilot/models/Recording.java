@@ -1,6 +1,6 @@
-package com.example.pepperpilot.other;
+package com.example.pepperpilot.models;
 
-public class Recording {
+public class Recording extends Task {
     private String title;
     private String recordDateTime;
 

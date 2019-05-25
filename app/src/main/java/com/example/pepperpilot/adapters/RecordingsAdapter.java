@@ -1,4 +1,4 @@
-package com.example.pepperpilot.Adapters;
+package com.example.pepperpilot.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.other.Recording;
-import com.example.pepperpilot.other.Scenario;
+import com.example.pepperpilot.models.Recording;
 
 import java.util.List;
 

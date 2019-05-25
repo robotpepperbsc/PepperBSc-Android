@@ -1,4 +1,4 @@
-package com.example.pepperpilot;
+package com.example.pepperpilot.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,6 +13,7 @@ import android.text.method.MovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.pepperpilot.R;
 import com.example.pepperpilot.fragments.DisplayOnScreenFragment;
 import com.example.pepperpilot.fragments.IpConnectionFragment;
 import com.example.pepperpilot.fragments.MovementFragment;
