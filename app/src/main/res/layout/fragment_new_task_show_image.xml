@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    tools:context=".fragments.CreateScenarioFragment">
+    android:layout_margin="8dp"
+    tools:context=".fragments.NewTaskShowImageFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,40 +14,35 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scenario title:"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@android:color/black"/>
+            android:textStyle="bold"
+            android:text="Tytuł zadania:"/>
 
         <EditText
-            android:id="@+id/editTextScenarioTitle"
+            android:id="@+id/editTextTitle"
             android:layout_width="match_parent"
             android:inputType="textCapSentences"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scenario description:"
-            android:fontFamily="sans-serif-condensed"
-            android:textColor="@android:color/black"/>
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:text="Opis zadania:"/>
 
         <EditText
-            android:id="@+id/editTextScenarioDescription"
+            android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:inputType="textCapSentences"
-            android:gravity="top"
-            android:lines="5"
-            android:maxLength="100" />
-
+            android:layout_height="wrap_content"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
-            android:id="@+id/buttonCreateScenario"
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create scenario" />
-
+            android:text="Zapisz "/>
 
     </LinearLayout>
+
 </FrameLayout>

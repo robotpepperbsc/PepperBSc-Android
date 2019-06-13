@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
+import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.activities.ScenariosActivity;
 import com.example.pepperpilot.enums.Mode;
 import com.example.pepperpilot.models.Scenario;
@@ -25,6 +26,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView nameTV;
         TextView descriptionTV;
+        TextView editDateTimeTV;
         ImageButton editB;
         ImageButton deleteB;
 
@@ -34,6 +36,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             editB = view.findViewById(R.id.imageButtonEdit);
             deleteB = view.findViewById(R.id.imageButtonDelete);
             descriptionTV = view.findViewById(R.id.textViewScenarioDescription);
+            editDateTimeTV = view.findViewById(R.id.textViewEditDateTime);
         }
     }
 
@@ -53,12 +56,14 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
     public void onBindViewHolder(final ScenariosAdapter.MyViewHolder holder, final int position) {
         holder.nameTV.setText(scenarioList.get(position).getName());
         holder.descriptionTV.setText(scenarioList.get(position).getDescription());
+        holder.editDateTimeTV.setText(scenarioList.get(position).getLastDateTimeEdited());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ScenariosActivity.class);
                 intent.putExtra("mode", Mode.SHOW);
+                intent.putExtra("position",holder.getAdapterPosition());
                 intent.putExtra("name",scenarioList.get(holder.getAdapterPosition()).getName());
                 context.startActivity(intent);
             }
@@ -69,7 +74,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             public void onClick(View v) {
                 Intent intent = new Intent(context, ScenariosActivity.class);
                 intent.putExtra("mode", Mode.EDIT);
-                intent.putExtra("name",scenarioList.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("position",holder.getAdapterPosition());
                 context.startActivity(intent);
             }
         });
@@ -78,6 +83,8 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"Delete clicked",Toast.LENGTH_SHORT).show();
+                ScenariosSingleton.getInstance().getScenarios().remove(holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
         });
 

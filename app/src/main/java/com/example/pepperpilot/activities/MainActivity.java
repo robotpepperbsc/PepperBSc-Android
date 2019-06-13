@@ -1,5 +1,7 @@
 package com.example.pepperpilot.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pepperpilot.R;
+import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.fragments.DisplayOnScreenFragment;
 import com.example.pepperpilot.fragments.IpConnectionFragment;
 import com.example.pepperpilot.fragments.MovementFragment;
@@ -21,9 +24,12 @@ import com.example.pepperpilot.fragments.RecordingsFragment;
 import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
 import com.example.pepperpilot.fragments.SpeechFragmeent;
+import com.example.pepperpilot.models.Scenario;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,21 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment,new IpConnectionFragment());
         fragmentTransaction.commit();
+
+
+        //Load scenarios from shared prefs
+        ScenariosSingleton.getInstance().getScenarios().clear();
+        SharedPreferences mPrefs = getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        int size = mPrefs.getInt("scenarioSize",0);
+        for(int i=0; i<size; i++) {
+            String json = mPrefs.getString("scenario"+i,"");
+            Scenario scenario = gson.fromJson(json,Scenario.class);
+            ScenariosSingleton.getInstance().getScenarios().add(scenario);
+        }
+
+
+
     }
 
     @Override
@@ -106,5 +127,28 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        //Save scenarios
+        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        int cnt = 0;
+
+        for(Scenario scenario : ScenariosSingleton.getInstance().getScenarios()) {
+            String json = gson.toJson(scenario);
+            prefsEditor.putString("scenario"+cnt,json);
+            prefsEditor.apply();
+            cnt++;
+        }
+
+        prefsEditor.putInt("scenarioSize",cnt);
+        prefsEditor.apply();
+
+
     }
 }

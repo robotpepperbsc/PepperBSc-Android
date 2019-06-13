@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.pepperpilot.R;
+import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.adapters.TasksAdapter;
 import com.example.pepperpilot.enums.TaskType;
+import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Task;
 
 import java.util.ArrayList;
@@ -24,11 +26,11 @@ public class ScenarioTasksFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scenario_tasks, container, false);
 
-        taskList = new ArrayList<>();
-        taskList.add(new Task(TaskType.MOVE,"ruch robota","Robot obraca się o 30 stopni a nastepnie jedzie do przodu 0,5m."));
-        taskList.add(new Task(TaskType.TELL,"ruch robota","Robot obraca się o 30 stopni a nastepnie jedzie do przodu 0,5m."));
-        taskList.add(new Task(TaskType.TELL,"ruch robota","Robot obraca się o 30 stopni a nastepnie jedzie do przodu 0,5m."));
-        taskList.add(new Task(TaskType.MOVE,"ruch robota","Robot obraca się o 30 stopni a nastepnie jedzie do przodu 0,5m."));
+        Bundle bundle = getArguments();
+        int scenarioPosition = bundle.getInt("position",0);
+
+        taskList = ScenariosSingleton.getInstance().getScenarios().get(scenarioPosition).getTasks();
+
 
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTasks);

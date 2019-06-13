@@ -1,18 +1,19 @@
 package com.example.pepperpilot.models;
 
-import com.example.pepperpilot.enums.TaskType;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Scenario{
     private String name;
     private String lastDateTimeEdited;
     private String description;
-    private List<TaskType> tasks;
+    private List<Task> tasks;
 
-    public Scenario(String name, String description) {
+    public Scenario(String name, String description,String lastDateTimeEdited) {
         this.name = name;
         this.description = description;
+        this.lastDateTimeEdited = lastDateTimeEdited;
+        this.tasks = new ArrayList<>();
     }
 
     public String getName() {
@@ -31,12 +32,12 @@ public class Scenario{
         this.lastDateTimeEdited = lastDateTimeEdited;
     }
 
-    public List<TaskType> getTasks() {
-        return tasks;
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
-    public void setTasks(List<TaskType> tasks) {
-        this.tasks = tasks;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     public String getDescription() {
