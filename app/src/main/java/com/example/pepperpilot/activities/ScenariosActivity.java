@@ -28,8 +28,6 @@ public class ScenariosActivity extends AppCompatActivity implements CallbackI {
         Intent intent = getIntent();
         mode = (Mode)intent.getSerializableExtra("mode");
 
-
-
         if(mode.equals(Mode.EDIT)) {
             scenarioPosition = intent.getIntExtra("position",-1);
             handleEditMode();
@@ -96,12 +94,5 @@ public class ScenariosActivity extends AppCompatActivity implements CallbackI {
     @Override
     protected void onStop() {
         super.onStop();
-
-
-
-
-
-
-
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/textViewRobotLanguage"
@@ -23,6 +23,9 @@
         <Spinner
             android:id="@+id/spinnerLanguage"
             android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
@@ -30,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/textViewRobotVoice"
@@ -43,6 +46,8 @@
         <Spinner
             android:id="@+id/spinnerVoice"
             android:layout_width="match_parent"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
@@ -51,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/textViewVoiceVolume"
@@ -65,30 +70,18 @@
             android:id="@+id/seekBarVoicwVolume"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_weight="1" />
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/textViewAppLanguage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Język aplikacji:"
-            app:fontFamily="sans-serif-condensed"/>
-
-        <Spinner
-            android:id="@+id/spinnerAppLanguage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+        android:text="Confirm"/>
 
 
 </LinearLayout>

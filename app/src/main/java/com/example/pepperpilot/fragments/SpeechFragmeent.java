@@ -12,19 +12,23 @@ import com.example.pepperpilot.R;
 
 public class SpeechFragmeent extends Fragment {
 
-    private Button sendB;
+    private Button sendSpeechB;
 
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_speech,container,false);
 
-        sendB = view.findViewById(R.id.buttonSend);
+        sendSpeechB = view.findViewById(R.id.buttonSendSpeech);
 
 
 
-        sendB.setOnClickListener(new View.OnClickListener() {
+        sendSpeechB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Send text to robot",Toast.LENGTH_SHORT).show();
+                //Todo Implement send speech function
+
+
+
+
             }
         });
 

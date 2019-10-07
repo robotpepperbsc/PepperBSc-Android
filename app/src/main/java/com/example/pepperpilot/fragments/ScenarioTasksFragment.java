@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.ScenariosSingleton;
+import com.example.pepperpilot.activities.ScenariosActivity;
 import com.example.pepperpilot.adapters.TasksAdapter;
 import com.example.pepperpilot.enums.TaskType;
 import com.example.pepperpilot.models.Scenario;
@@ -27,7 +28,7 @@ public class ScenarioTasksFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_scenario_tasks, container, false);
 
         Bundle bundle = getArguments();
-        int scenarioPosition = bundle.getInt("position",0);
+        int scenarioPosition = ScenariosActivity.getScenarioPosition();
 
         taskList = ScenariosSingleton.getInstance().getScenarios().get(scenarioPosition).getTasks();
 

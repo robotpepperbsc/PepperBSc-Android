@@ -26,7 +26,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonSend"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/buttonSendSpeech"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

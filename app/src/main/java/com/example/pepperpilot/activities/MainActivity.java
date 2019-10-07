@@ -11,8 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.MovementMethod;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pepperpilot.R;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment,new IpConnectionFragment());
+        fragmentTransaction.replace(R.id.fragment, new IpConnectionFragment());
         fragmentTransaction.commit();
 
 
@@ -56,13 +54,12 @@ public class MainActivity extends AppCompatActivity
         ScenariosSingleton.getInstance().getScenarios().clear();
         SharedPreferences mPrefs = getPreferences(Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        int size = mPrefs.getInt("scenarioSize",0);
-        for(int i=0; i<size; i++) {
-            String json = mPrefs.getString("scenario"+i,"");
-            Scenario scenario = gson.fromJson(json,Scenario.class);
+        int size = mPrefs.getInt("scenarioSize", 0);
+        for (int i = 0; i < size; i++) {
+            String json = mPrefs.getString("scenario" + i, "");
+            Scenario scenario = gson.fromJson(json, Scenario.class);
             ScenariosSingleton.getInstance().getScenarios().add(scenario);
         }
-
 
 
     }
@@ -78,50 +75,48 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if(id == R.id.nav_connection) {
+        if (id == R.id.nav_connection) {
             setTitle("IP connection");
             IpConnectionFragment fragment = new IpConnectionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_speech) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_speech) {
             setTitle("Speech");
             SpeechFragmeent fragment = new SpeechFragmeent();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_movement) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_movement) {
             setTitle("Movement");
             MovementFragment fragment = new MovementFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_display_on_screen) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_display_on_screen) {
             setTitle("Display on the screen");
             DisplayOnScreenFragment fragment = new DisplayOnScreenFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_settings) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_settings) {
             setTitle("Settings");
             SettingsFragment fragment = new SettingsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_recordings) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_recordings) {
             setTitle("Recordings");
             RecordingsFragment fragment = new RecordingsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
-        } else if(id == R.id.nav_scenarios) {
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_scenarios) {
             setTitle("Scenarios");
             ScenariosFragment fragment = new ScenariosFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment,fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
         }
-
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -139,14 +134,14 @@ public class MainActivity extends AppCompatActivity
         Gson gson = new Gson();
         int cnt = 0;
 
-        for(Scenario scenario : ScenariosSingleton.getInstance().getScenarios()) {
+        for (Scenario scenario : ScenariosSingleton.getInstance().getScenarios()) {
             String json = gson.toJson(scenario);
-            prefsEditor.putString("scenario"+cnt,json);
+            prefsEditor.putString("scenario" + cnt, json);
             prefsEditor.apply();
             cnt++;
         }
 
-        prefsEditor.putInt("scenarioSize",cnt);
+        prefsEditor.putInt("scenarioSize", cnt);
         prefsEditor.apply();
 
 
