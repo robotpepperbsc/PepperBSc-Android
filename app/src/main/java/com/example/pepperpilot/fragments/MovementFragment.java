@@ -11,6 +11,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
+import com.example.pepperpilot.interfaces.ServerCallback;
+import com.example.pepperpilot.requests.RequestMaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,19 @@ public class MovementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Forward",Toast.LENGTH_SHORT).show();
-                //TODO implement button forward action
+
+                RequestMaker.sendMovement(new ServerCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(getActivity(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        Toast.makeText(getActivity(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                },"","",getActivity());
+
             }
         });
 
@@ -68,7 +82,17 @@ public class MovementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Backward",Toast.LENGTH_SHORT).show();
-                //TODO implement button backward action
+                RequestMaker.sendMovement(new ServerCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(getActivity(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        Toast.makeText(getActivity(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                },"","",getActivity());
             }
         });
 
@@ -76,7 +100,17 @@ public class MovementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Left",Toast.LENGTH_SHORT).show();
-                //TODO implement button left action
+                RequestMaker.sendMovement(new ServerCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(getActivity(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        Toast.makeText(getActivity(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                },"","",getActivity());
             }
         });
 
@@ -84,7 +118,17 @@ public class MovementFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Right",Toast.LENGTH_SHORT).show();
-                //TODO implement button left action
+                RequestMaker.sendMovement(new ServerCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(getActivity(),"SUCCESS",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        Toast.makeText(getActivity(),"ERROR",Toast.LENGTH_SHORT).show();
+                    }
+                },"","",getActivity());
             }
         });
 

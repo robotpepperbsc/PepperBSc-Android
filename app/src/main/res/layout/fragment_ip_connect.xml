@@ -1,68 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/constraintLayoutIpConnect"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewIpInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Wprowadź IP:PORT serwera:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center_horizontal"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Wprowadź IP i PORT serwera:" />
 
-    <EditText
-        android:id="@+id/editTextIP"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:ems="10"
-        android:hint="IP:PORT"
-        android:inputType="textPersonName"
-        android:singleLine="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewIpInput" />
+        android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Server IP"
+            android:inputType="textPersonName"
+            android:singleLine="false" />
+
+        <EditText
+            android:id="@+id/editTextPort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="PORT" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewConnectionStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Nie połączono"
+        android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-condensed"
-        android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="@+id/editTextIP"
-        app:layout_constraintStart_toStartOf="@+id/editTextIP"
-        app:layout_constraintTop_toBottomOf="@+id/editTextIP" />
+        android:text="Nie połączono"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/black" />
 
     <Button
         android:id="@+id/buttonConnect"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Połącz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewConnectionStatus" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_gravity="center_horizontal"
+        android:text="Połącz" />
+</LinearLayout>

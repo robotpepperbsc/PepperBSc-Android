@@ -35,10 +35,11 @@
             android:id="@+id/editTextScenarioDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapSentences"
-            android:gravity="top"
             android:lines="5"
-            android:maxLength="100" />
+            android:minLines="5"
+            android:maxLines="5"
+            android:inputType="textMultiLine"
+            android:gravity="top" />
 
 
         <Button
