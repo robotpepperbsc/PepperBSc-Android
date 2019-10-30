@@ -82,22 +82,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_connection) {
-            setTitle("IP connection");
+            setTitle("Połączenie z serwerem");
             IpConnectionFragment fragment = new IpConnectionFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
         } else if (id == R.id.nav_speech) {
-            setTitle("Speech");
+            setTitle("Mowa robota");
             SpeechFragmeent fragment = new SpeechFragmeent();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
         } else if (id == R.id.nav_movement) {
-            setTitle("Movement");
+            setTitle("Ruch robota");
             MovementFragment fragment = new MovementFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
         } else if (id == R.id.nav_display_on_screen) {
-            setTitle("Display on the screen");
+            setTitle("Wyświetl na tablecie");
             DisplayOnScreenFragment fragment = new DisplayOnScreenFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();

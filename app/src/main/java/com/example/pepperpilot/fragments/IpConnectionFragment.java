@@ -50,13 +50,13 @@ public class IpConnectionFragment extends Fragment {
                 RequestMaker.connect(new ServerCallback() {
                     @Override
                     public void onSuccess(String result) {
-                        connectionStatusTV.setText("Connected succesfully to server!");
+                        connectionStatusTV.setText("Połączono pomyślnie!");
                         connectionStatusTV.setTextColor(Color.parseColor("#43A047"));
                     }
 
                     @Override
                     public void onError(String result) {
-                        connectionStatusTV.setText("Connection error!");
+                        connectionStatusTV.setText("Błąd połączenia!");
                         connectionStatusTV.setTextColor(Color.parseColor("#e53935"));
                     }
                 }, getActivity());
