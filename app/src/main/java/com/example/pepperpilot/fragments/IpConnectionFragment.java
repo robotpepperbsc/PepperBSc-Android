@@ -47,6 +47,9 @@ public class IpConnectionFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
+
+
                 RequestMaker.connect(new ServerCallback() {
                     @Override
                     public void onSuccess(String result) {

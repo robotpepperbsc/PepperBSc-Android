@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.ScenariosSingleton;
+import com.example.pepperpilot.fragments.BehaviorsFragment;
 import com.example.pepperpilot.fragments.DisplayOnScreenFragment;
 import com.example.pepperpilot.fragments.IpConnectionFragment;
 import com.example.pepperpilot.fragments.MovementFragment;
@@ -94,6 +95,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_movement) {
             setTitle("Ruch robota");
             MovementFragment fragment = new MovementFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+        } else if (id == R.id.nav_behaviors) {
+            setTitle("Wyświetl na tablecie");
+            BehaviorsFragment fragment = new BehaviorsFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
         } else if (id == R.id.nav_display_on_screen) {

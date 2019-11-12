@@ -26,6 +26,7 @@ public class NewTaskShowImageFragment extends Fragment {
 
     private EditText titleET;
     private EditText descriptionET;
+    private EditText imageUrlET;
 
     @Override
     public void onAttach(Context context) {
@@ -40,6 +41,7 @@ public class NewTaskShowImageFragment extends Fragment {
 
         titleET = view.findViewById(R.id.editTextTitle);
         descriptionET = view.findViewById(R.id.editTextDescription);
+        imageUrlET = view.findViewById(R.id.editTextImageUrl);
 
         saveB = view.findViewById(R.id.buttonSave);
 
@@ -57,4 +59,9 @@ public class NewTaskShowImageFragment extends Fragment {
 
         return view;
     }
+
+    private String getImageUrl() {
+        return imageUrlET.getText().toString();
+    }
+
 }

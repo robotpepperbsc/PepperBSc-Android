@@ -1,13 +1,13 @@
 package com.example.pepperpilot.requests;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.pepperpilot.enums.MovementDirection;
 import com.example.pepperpilot.interfaces.ServerCallback;
 
 import org.json.JSONObject;
@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class RequestMaker {
 
-    public final static String IP = "192.168.1.106";
+    public final static String IP = "192.168.1.101";
     public final static String PORT = "5000";
 
     public static String ipPort = IP + ":" + PORT;
@@ -42,7 +42,7 @@ public class RequestMaker {
 
     }
 
-    public static void sendMovement(final ServerCallback serverCallback, String type, String command, Context context) {
+    public static void sendMovement(final ServerCallback serverCallback, final MovementDirection direction, Context context) {
 
         String url = "http://" + ipPort + "/add_action";
 
@@ -58,10 +58,26 @@ public class RequestMaker {
             }
         }) {
             @Override
-           public byte[] getBody() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String,String>();
+            public byte[] getBody() throws AuthFailureError {
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put("type", "generic");
-                params.put("command", "turn_right");
+
+                switch(direction) {
+                    case FORWARD:
+                        params.put("command", "move_forward");
+                        break;
+                    case BACK:
+                        params.put("command", "move_back");
+                        break;
+                    case RIGHT:
+                        params.put("command", "turn_right");
+                        break;
+                    case LEFT:
+                        params.put("command", "turn_left");
+                        break;
+                }
+
+
 
                 return new JSONObject(params).toString().getBytes();
             }
@@ -94,10 +110,13 @@ public class RequestMaker {
         }) {
             @Override
             public byte[] getBody() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String,String>();
+                Map<String, Object> params = new HashMap<String, Object>();
                 params.put("type", "speech");
                 params.put("command", "say");
-                params.put("text",text);
+                params.put("text", text);
+                params.put("volume", 0.8);
+                params.put("speech_speed", 100);
+                params.put("language", "Polish");
 
                 return new JSONObject(params).toString().getBytes();
             }

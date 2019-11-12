@@ -25,6 +25,7 @@
                 android:textColor="@android:color/black" />
 
             <EditText
+                android:id="@+id/editTextFilename"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -54,13 +55,16 @@
                     android:orientation="horizontal">
 
                     <RadioButton
+                        android:id="@+id/radioButtonImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:layout_marginRight="8dp"
                         android:fontFamily="sans-serif-condensed"
                         android:text="zdjęcie" />
 
                     <RadioButton
+                        android:id="@+id/radioButtonMovie"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
@@ -69,6 +73,7 @@
                 </RadioGroup>
 
                 <Button
+                    android:id="@+id/buttonAddFile"
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

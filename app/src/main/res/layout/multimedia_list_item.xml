@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ECEFF1"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp">
 
             <ImageView
                 android:id="@+id/imageViewMultimediaType"

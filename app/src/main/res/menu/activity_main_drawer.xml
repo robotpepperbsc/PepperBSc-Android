@@ -21,6 +21,11 @@
                 android:icon="@drawable/ic_directions_walk_black_24dp"
                 android:title="Ruch" />
             <item
+                android:id="@+id/nav_behaviors"
+                android:icon="@drawable/ic_directions_walk_black_24dp"
+                android:title="Zachowania"/>
+
+            <item
                 android:id="@+id/nav_display_on_screen"
                 android:icon="@drawable/ic_cast_black_24dp"
                 android:title="Wyświetl zdjęcie/film" />

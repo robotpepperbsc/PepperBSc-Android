@@ -9,7 +9,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.adapters.MultimediaFileAdapter;
@@ -22,11 +25,19 @@ public class DisplayOnScreenFragment extends Fragment {
 
     private EditText searchET;
     private MultimediaFileAdapter multimediaFileAdapter;
+    private EditText fileNameET;
+    private RadioButton movieRB;
+    private RadioButton imageRB;
+    private Button addFileB;
 
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_display_on_screen, container, false);
 
         searchET = view.findViewById(R.id.editTextSearch);
+        fileNameET = view.findViewById(R.id.editTextFilename);
+        movieRB = view.findViewById(R.id.radioButtonMovie);
+        imageRB = view.findViewById(R.id.radioButtonImage);
+        addFileB = view.findViewById(R.id.buttonAddFile);
 
         final ArrayList<MultimediaFile> list = new ArrayList<>();
 
@@ -39,7 +50,6 @@ public class DisplayOnScreenFragment extends Fragment {
         list.add(new MultimediaFile("taniec_brzucha.mp4", MultimediaFileType.MOVIE));
         list.add(new MultimediaFile("koala_ziewa.jpg", MultimediaFileType.IMAGE));
 
-
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMultimedia);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -47,6 +57,22 @@ public class DisplayOnScreenFragment extends Fragment {
 
         multimediaFileAdapter = new MultimediaFileAdapter(list, getActivity());
         recyclerView.setAdapter(multimediaFileAdapter);
+
+        addFileB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!fileNameET.getText().toString().isEmpty()) {
+                    MultimediaFileType multimediaFileType;
+                    String filename = fileNameET.getText().toString();
+                    if (movieRB.isChecked()) {
+                        multimediaFileType = MultimediaFileType.MOVIE;
+                    } else {
+                        multimediaFileType = MultimediaFileType.IMAGE;
+                    }
+                    Toast.makeText(getActivity(), "Create: " + filename + " type:" + multimediaFileType, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         searchET.addTextChangedListener(new TextWatcher() {
             @Override
