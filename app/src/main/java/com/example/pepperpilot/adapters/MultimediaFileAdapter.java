@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.enums.MultimediaFileType;
 import com.example.pepperpilot.models.MultimediaFile;
-import com.example.pepperpilot.models.Recording;
 
 import java.util.List;
 
@@ -55,9 +54,9 @@ public class MultimediaFileAdapter extends RecyclerView.Adapter<MultimediaFileAd
         holder.nameTV.setText(file.getFileName());
 
         if (file.getType().equals(MultimediaFileType.IMAGE)) {
-            holder.typeIV.setImageResource(R.drawable.ic_image_black_24dp);
+            holder.typeIV.setImageResource(R.drawable.ic_image_green_24dp);
         } else {
-            holder.typeIV.setImageResource(R.drawable.ic_movie_black_24dp);
+            holder.typeIV.setImageResource(R.drawable.ic_movie_orange_24dp);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

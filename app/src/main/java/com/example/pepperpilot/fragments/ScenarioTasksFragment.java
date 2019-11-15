@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.ScenariosSingleton;
@@ -32,7 +33,7 @@ public class ScenarioTasksFragment extends Fragment {
 
         taskList = ScenariosSingleton.getInstance().getScenarios().get(scenarioPosition).getTasks();
 
-
+        Toast.makeText(getActivity(), "Tutaj zostanie wykonane zapytanie do serwera i wylistowane wszystkie taski dla scenariusza", Toast.LENGTH_LONG).show();
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTasks);
 

@@ -3,31 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.NewTaskBehaviorFragment">
+    tools:context=".fragments.NewTaskShowImageVideoFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/get_robot_behaviors_button"
+            android:id="@+id/get_multimedia_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
             android:fontFamily="sans-serif-condensed"
-            android:text="Pobierz dostępne zachowania robota" />
+            android:text="Pobierz dostępne multimedia " />
 
         <LinearLayout
+            android:id="@+id/show_image_video_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/get_multimedia_button"
+            android:layout_marginRight="8dp"
             android:layout_above="@id/save_button"
-            android:layout_below="@id/get_robot_behaviors_button"
-            android:orientation="vertical"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -54,13 +55,11 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/behaviors_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp" />
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/multimedia_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

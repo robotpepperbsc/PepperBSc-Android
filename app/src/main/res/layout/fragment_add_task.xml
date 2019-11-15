@@ -15,40 +15,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E8EAF6"
             android:orientation="vertical"
             android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Tytuł zadania:"
-                android:textStyle="bold" />
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/editTextTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="textCapSentences"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Wprowadź tytuł zadania"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Opis zadania:"
-                android:textStyle="bold" />
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@android:color/black"/>
 
             <EditText
                 android:id="@+id/editTextDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:hint="Wprowadź opis zadania"
                 android:inputType="textCapSentences" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="@android:color/darker_gray" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewTaskType"
@@ -58,7 +63,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="@android:color/darker_gray"/>
 
         <FrameLayout
             android:id="@+id/fragmentAddTask"

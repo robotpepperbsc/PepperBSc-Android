@@ -3,83 +3,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8EAF6"
-    android:padding="8dp"
     tools:context=".fragments.NewTaskSpeechFragment">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/speech_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@id/save_button">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Tekst do powiedzenia przez robota:" />
-
-            <EditText
-                android:id="@+id/editTextSpeech"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:gravity="top|start"
-                android:hint="Robot will say this text."
-                android:inputType="textMultiLine"
-                android:lines="6"
-                android:maxLines="10"
-                android:minLines="6"
-                android:scrollbars="vertical" />
+                android:layout_height="match_parent"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:orientation="vertical">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Głośność:"
-                android:textColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Tekst do powiedzenia przez robota:"
+                    android:textColor="@android:color/black" />
 
-            <SeekBar
-                android:id="@+id/seekBarVoiceVolume"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp" />
+                <EditText
+                    android:id="@+id/editTextSpeech"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="top|start"
+                    android:hint="Robot powie ten tekst."
+                    android:inputType="textMultiLine"
+                    android:lines="6"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:scrollbars="vertical" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Szybkość mowy (domyślnie 100):"
-                android:textColor="@android:color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Głośność:"
+                    android:textColor="@android:color/black" />
 
-            <EditText
-                android:id="@+id/editTextVoiceSpeed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="100" />
+                <SeekBar
+                    android:id="@+id/seekBarVoiceVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
 
-            <Button
-                android:id="@+id/buttonSave"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Zapisz " />
 
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Szybkość mowy (domyślnie 100):"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/editTextVoiceSpeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="100" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Dodaj zadanie " />
+    </RelativeLayout>
 </FrameLayout>

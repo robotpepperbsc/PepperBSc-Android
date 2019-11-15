@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    tools:context=".fragments.EditScenarioFragment">
+    tools:context=".fragments.ManageScenarioFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,33 +15,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Scenario name:"/>
+            android:textColor="@android:color/black"
+            android:text="Nazwa scenariusza:"/>
 
         <EditText
             android:id="@+id/editTextScenarioName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Nazwa scenariusza"/>
+            android:hint="Wprowadź nazwę scenariusza"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Scenario description:"/>
+            android:textColor="@android:color/black"
+            android:text="Opis scenariusza:"/>
 
         <EditText
             android:id="@+id/editTextScenarioDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Scenario description"/>
+            android:hint="Wprowadź opis scenariusza"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:fontFamily="sans-serif-condensed"
-            android:text="Tasks list:"/>
+            android:text="Lista zadań:"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewEditTasks"
@@ -57,14 +60,14 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add task"/>
+        android:text="Dodaj zadanie"/>
 
     <Button
         android:id="@+id/buttonSaveAndExit"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save and exit"/>
+        android:text="Zapisz i wyjdź"/>
     </LinearLayout>
 
 </FrameLayout>

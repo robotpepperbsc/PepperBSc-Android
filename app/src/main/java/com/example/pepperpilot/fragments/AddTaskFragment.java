@@ -3,6 +3,7 @@ package com.example.pepperpilot.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,16 +33,16 @@ public class AddTaskFragment extends Fragment implements ClickI {
         List<AddTaskType> addTaskTypeList = new ArrayList<>();
         addTaskTypeList.add(new AddTaskType(TaskType.MOVE,"ruch",R.drawable.ic_directions_walk_black_24dp));
         addTaskTypeList.add(new AddTaskType(TaskType.TELL,"mowa",R.drawable.ic_record_voice_over_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_IMAGE_ON_THE_SCREEN,"zdjęcie",R.drawable.ic_image_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_VIDEO_ON_THE_SCREEN,"film",R.drawable.ic_movie_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.BEHAVIORS,"zachowania",R.drawable.ic_directions_walk_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_VIDEO_ON_THE_SCREEN,"multimedia",R.drawable.ic_cast_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.BEHAVIORS,"zachowania",R.drawable.ic_insert_emoticon_black_24dp));
 
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTaskType);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL,false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
         TaskTypeAdapter taskTypeAdapter = new TaskTypeAdapter(addTaskTypeList,getActivity(),this);
         recyclerView.setAdapter(taskTypeAdapter);
 
@@ -70,12 +71,9 @@ public class AddTaskFragment extends Fragment implements ClickI {
                 fragment = new NewTaskSpeechFragment();
                 break;
             case 2:
-                fragment = new NewTaskShowImageFragment();
+                fragment = new NewTaskShowImageVideoFragment();
                 break;
             case 3:
-                fragment = new NewTaskShowVideoFragment() ;
-                break;
-            case 4:
                 fragment = new NewTaskBehaviorFragment();
                 break;
             default:

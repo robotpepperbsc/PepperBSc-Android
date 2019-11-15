@@ -14,78 +14,73 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.activities.ScenariosActivity;
-import com.example.pepperpilot.adapters.EditTasksAdapter;
+import com.example.pepperpilot.adapters.ManageTasksAdapter;
 import com.example.pepperpilot.enums.CallbackFragment;
+import com.example.pepperpilot.enums.Mode;
+import com.example.pepperpilot.interfaces.CallbackI;
 import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Task;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-public class EditScenarioFragment extends Fragment {
+public class ManageScenarioFragment extends Fragment {
     private EditText scenarioNameET;
     private EditText scenarioDescriptionET;
     private Button addTaskB;
     private Button saveAndExitB;
     private List<Task> taskList;
-    private List<Scenario> scenarios;
-    private int scenarioPosition;
     private Activity activity;
-    private Scenario scenario;
+    private Mode mode;
+    private CallbackI callback;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.activity = getActivity();
+
+        try {
+            callback = (CallbackI) context;
+        }catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onViewSelected");
+        }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_scenario, container, false);
+        View view = inflater.inflate(R.layout.fragment_manage_scenario, container, false);
         scenarioNameET = view.findViewById(R.id.editTextScenarioName);
         scenarioDescriptionET = view.findViewById(R.id.editTextScenarioDescription);
         addTaskB = view.findViewById(R.id.buttonAddTask);
         saveAndExitB = view.findViewById(R.id.buttonSaveAndExit);
 
+        Bundle bundle = getArguments();
 
+        mode = (Mode) bundle.getSerializable("mode");
 
-        scenarios = ScenariosSingleton.getInstance().getScenarios();
-
-
-        scenarioPosition = ScenariosActivity.getScenarioPosition();
-        scenarioNameET.setText(scenarios.get(scenarioPosition).getName());
-        scenarioDescriptionET.setText(scenarios.get(scenarioPosition).getDescription());
-
-        scenario = ScenariosSingleton.getInstance().getScenarios().get(scenarioPosition);
-        taskList = scenario.getTasks();
+        taskList = new ArrayList();
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewEditTasks);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        EditTasksAdapter editTasksAdapter = new EditTasksAdapter(taskList,getActivity());
+        ManageTasksAdapter editTasksAdapter = new ManageTasksAdapter(taskList,getActivity());
         recyclerView.setAdapter(editTasksAdapter);
 
 
         saveAndExitB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String scenarioName = scenarioNameET.getText().toString();
-                String scenarioDescription = scenarioDescriptionET.getText().toString();
-                String editDateTime;
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String currentDateandTime = sdf.format(new Date());
+                // tu bedzie trzeba zlecic do serwera zapisanie scenariusza
 
-                scenario.setName(scenarioName);
-                scenario.setDescription(scenarioDescription);
-                scenario.setLastDateTimeEdited(currentDateandTime);
+
 
                 getActivity().finish();
             }
@@ -94,8 +89,7 @@ public class EditScenarioFragment extends Fragment {
         addTaskB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Add task clicked",Toast.LENGTH_SHORT).show();
-                ((ScenariosActivity)activity).callbackMethod(CallbackFragment.ADD_TASK);
+                callback.callbackMethod(CallbackFragment.ADD_TASK);
             }
         });
 

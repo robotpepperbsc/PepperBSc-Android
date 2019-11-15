@@ -65,7 +65,7 @@ public class TaskTypeAdapter extends RecyclerView.Adapter<TaskTypeAdapter.MyView
 
 
         if(holder.getAdapterPosition() == selected) {
-            holder.itemView.setBackgroundColor(Color.parseColor("#f1c40f"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#FFD54F"));
         } else {
             holder.itemView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }

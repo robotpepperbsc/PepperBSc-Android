@@ -21,7 +21,6 @@ import com.example.pepperpilot.models.Speech;
 public class NewTaskSpeechFragment extends Fragment {
 
     private Button saveB;
-    private Activity activity;
 
     private EditText titleET;
     private EditText descriptionET;
@@ -29,7 +28,6 @@ public class NewTaskSpeechFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.activity = getActivity();
     }
 
     @Override
@@ -40,17 +38,12 @@ public class NewTaskSpeechFragment extends Fragment {
         titleET = view.findViewById(R.id.editTextTitle);
         descriptionET = view.findViewById(R.id.editTextDescription);
 
-        saveB = view.findViewById(R.id.buttonSave);
+        saveB = view.findViewById(R.id.save_button);
 
         saveB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = titleET.getText().toString();
-                String description = descriptionET.getText().toString();
 
-                Speech speech = new Speech(TaskType.TELL,title,description);
-                ScenariosSingleton.getInstance().getScenarios().get(ScenariosActivity.getScenarioPosition()).addTask(speech);
-                ((ScenariosActivity)activity).callbackMethod(CallbackFragment.EDIT_SCENARIO);
             }
         });
 

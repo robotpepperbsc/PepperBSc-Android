@@ -15,6 +15,8 @@
             android:id="@+id/get_robot_behaviors_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_height="wrap_content"
             android:text="Pobierz zachowania robota" />
 

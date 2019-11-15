@@ -52,7 +52,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:textStyle="bold"
                 android:layout_below="@id/textViewScenarioDescription"
-                android:text="Last time edited: "/>
+                android:text="Ostatnio edytowano: "/>
 
             <TextView
                 android:id="@+id/textViewEditDateTime"

@@ -1,7 +1,6 @@
 package com.example.pepperpilot.activities;
 
 import android.os.Bundle;
-import android.support.design.button.MaterialButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
@@ -26,10 +26,12 @@ import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
 import com.example.pepperpilot.fragments.SpeechFragment;
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button stopB;
+    private TextView toolbarTitleTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         stopB = findViewById(R.id.stop_button);
+        toolbarTitleTV = findViewById(R.id.toolbar_title_text_view);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        toolbarTitleTV.setText("Połączenie z serwerem");
         fragmentTransaction.replace(R.id.fragment, new IpConnectionFragment());
         fragmentTransaction.commit();
 
@@ -85,28 +89,28 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (id == R.id.nav_connection) {
-            setTitle("Połączenie z serwerem");
+            toolbarTitleTV.setText("Połączenie z serwerem");
             fragment = new IpConnectionFragment();
         } else if (id == R.id.nav_speech) {
-            setTitle("Mowa robota");
+            toolbarTitleTV.setText("Mowa robota");
             fragment = new SpeechFragment();
         } else if (id == R.id.nav_movement) {
-            setTitle("Ruch robota");
+            toolbarTitleTV.setText("Ruch robota");
             fragment = new MovementFragment();
         } else if (id == R.id.nav_behaviors) {
-            setTitle("Zachowania");
+            toolbarTitleTV.setText("Zachowania");
             fragment = new BehaviorsFragment();
         } else if (id == R.id.nav_display_on_screen) {
-            setTitle("Wyświetl na tablecie");
+            toolbarTitleTV.setText("Wyświetl na tablecie");
             fragment = new DisplayOnScreenFragment();
         } else if (id == R.id.nav_settings) {
-            setTitle("Settings");
+            toolbarTitleTV.setText("Ustawienia");
             fragment = new SettingsFragment();
         } else if (id == R.id.nav_recordings) {
-            setTitle("Recordings");
+            toolbarTitleTV.setText("Nagrania");
             fragment = new RecordingsFragment();
         } else if (id == R.id.nav_scenarios) {
-            setTitle("Scenarios");
+            toolbarTitleTV.setText("Scenariusze");
             fragment = new ScenariosFragment();
         }
 

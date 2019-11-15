@@ -14,7 +14,7 @@ import com.example.pepperpilot.models.Task;
 
 import java.util.List;
 
-public class EditTasksAdapter extends RecyclerView.Adapter<EditTasksAdapter.MyViewHolder> {
+public class ManageTasksAdapter extends RecyclerView.Adapter<ManageTasksAdapter.MyViewHolder> {
     private List<Task> taskList;
     private Context context;
 
@@ -39,19 +39,19 @@ public class EditTasksAdapter extends RecyclerView.Adapter<EditTasksAdapter.MyVi
         }
     }
 
-    public EditTasksAdapter(List<Task> taskList, Context context) {
+    public ManageTasksAdapter(List<Task> taskList, Context context) {
         this.taskList = taskList;
         this.context = context;
     }
 
     @Override
-    public EditTasksAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public ManageTasksAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.scenario_edit_task_card,parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final EditTasksAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final ManageTasksAdapter.MyViewHolder holder, final int position) {
         holder.taskNumberTV.setText(String.valueOf(position));
         holder.taskTypeTV.setText(taskList.get(position).getStringTaskType());
         holder.taskNameTV.setText(taskList.get(position).getTaskName());
