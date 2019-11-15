@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:padding="8dp"
     tools:context=".fragments.NewTaskShowVideoFragment">
 
     <LinearLayout
@@ -11,37 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Tytuł zadania:"/>
-
-        <EditText
-            android:id="@+id/editTextTitle"
-            android:layout_width="match_parent"
-            android:inputType="textCapSentences"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"
-            android:text="Opis zadania:"/>
-
-        <EditText
-            android:id="@+id/editTextDescription"
-            android:layout_width="match_parent"
-            android:inputType="textCapSentences"
-            android:layout_height="wrap_content"/>
 
         <Button
-            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/buttonSave"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zapisz "/>
+            android:text="Zapisz " />
 
     </LinearLayout>
 

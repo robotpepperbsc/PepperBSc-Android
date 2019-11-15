@@ -1,9 +1,9 @@
 package com.example.pepperpilot.activities;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +12,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.fragments.BehaviorsFragment;
 import com.example.pepperpilot.fragments.DisplayOnScreenFragment;
 import com.example.pepperpilot.fragments.IpConnectionFragment;
@@ -22,13 +24,12 @@ import com.example.pepperpilot.fragments.MovementFragment;
 import com.example.pepperpilot.fragments.RecordingsFragment;
 import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
-import com.example.pepperpilot.fragments.SpeechFragmeent;
-import com.example.pepperpilot.models.Scenario;
-import com.google.gson.Gson;
+import com.example.pepperpilot.fragments.SpeechFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Button stopB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        stopB = findViewById(R.id.stop_button);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -51,23 +54,19 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
 
 
-        //Load scenarios from shared prefs
-        ScenariosSingleton.getInstance().getScenarios().clear();
-        SharedPreferences mPrefs = getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        int size = mPrefs.getInt("scenarioSize", 0);
-        for (int i = 0; i < size; i++) {
-            String json = mPrefs.getString("scenario" + i, "");
-            Scenario scenario = gson.fromJson(json, Scenario.class);
-            ScenariosSingleton.getInstance().getScenarios().add(scenario);
-        }
-
+        stopB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"STOP",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -82,48 +81,36 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment fragment = null;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
         if (id == R.id.nav_connection) {
             setTitle("Połączenie z serwerem");
-            IpConnectionFragment fragment = new IpConnectionFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new IpConnectionFragment();
         } else if (id == R.id.nav_speech) {
             setTitle("Mowa robota");
-            SpeechFragmeent fragment = new SpeechFragmeent();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new SpeechFragment();
         } else if (id == R.id.nav_movement) {
             setTitle("Ruch robota");
-            MovementFragment fragment = new MovementFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new MovementFragment();
         } else if (id == R.id.nav_behaviors) {
-            setTitle("Wyświetl na tablecie");
-            BehaviorsFragment fragment = new BehaviorsFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            setTitle("Zachowania");
+            fragment = new BehaviorsFragment();
         } else if (id == R.id.nav_display_on_screen) {
             setTitle("Wyświetl na tablecie");
-            DisplayOnScreenFragment fragment = new DisplayOnScreenFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new DisplayOnScreenFragment();
         } else if (id == R.id.nav_settings) {
             setTitle("Settings");
-            SettingsFragment fragment = new SettingsFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new SettingsFragment();
         } else if (id == R.id.nav_recordings) {
             setTitle("Recordings");
-            RecordingsFragment fragment = new RecordingsFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new RecordingsFragment();
         } else if (id == R.id.nav_scenarios) {
             setTitle("Scenarios");
-            ScenariosFragment fragment = new ScenariosFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
+            fragment = new ScenariosFragment();
         }
 
+        fragmentManager.beginTransaction().replace(R.id.fragment, fragment).commit();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -133,22 +120,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-
-        //Save scenarios
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        int cnt = 0;
-
-        for (Scenario scenario : ScenariosSingleton.getInstance().getScenarios()) {
-            String json = gson.toJson(scenario);
-            prefsEditor.putString("scenario" + cnt, json);
-            prefsEditor.apply();
-            cnt++;
-        }
-
-        prefsEditor.putInt("scenarioSize", cnt);
-        prefsEditor.apply();
 
 
     }

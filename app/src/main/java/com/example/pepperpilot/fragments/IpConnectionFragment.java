@@ -1,7 +1,6 @@
 package com.example.pepperpilot.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +22,7 @@ public class IpConnectionFragment extends Fragment {
     private TextView connectionStatusTV;
     private EditText ipAddressET;
     private EditText portAddressET;
+    private EditText passwordET;
 
 
     @Override
@@ -34,10 +34,11 @@ public class IpConnectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ip_connect, container, false);
 
-        connectB = view.findViewById(R.id.buttonConnect);
-        ipAddressET = view.findViewById(R.id.editTextIP);
-        portAddressET = view.findViewById(R.id.editTextPort);
-        connectionStatusTV = view.findViewById(R.id.textViewConnectionStatus);
+        connectB = view.findViewById(R.id.connect_button);
+        ipAddressET = view.findViewById(R.id.ip_edit_text);
+        portAddressET = view.findViewById(R.id.port_edit_text);
+        passwordET = view.findViewById(R.id.password_edit_text);
+        connectionStatusTV = view.findViewById(R.id.connection_status_text_view);
 
         ipAddressET.setText(RequestMaker.IP);
         portAddressET.setText(RequestMaker.PORT);
@@ -46,9 +47,6 @@ public class IpConnectionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
-
-
 
                 RequestMaker.connect(new ServerCallback() {
                     @Override

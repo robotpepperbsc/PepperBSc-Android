@@ -19,7 +19,6 @@
             android:padding="4dp">
 
             <TextView
-                android:id="@+id/textViewIpInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -36,7 +35,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextIP"
+                    android:id="@+id/ip_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -46,7 +45,7 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editTextPort"
+                    android:id="@+id/port_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -62,6 +61,7 @@
                 android:textColor="@android:color/black" />
 
             <EditText
+                android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -91,7 +91,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textViewConnectionStatus"
+            android:id="@+id/connection_status_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -101,7 +101,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonConnect"
+        android:id="@+id/connect_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

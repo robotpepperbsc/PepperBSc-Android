@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:background="#E8EAF6"
+    android:padding="8dp"
     tools:context=".fragments.NewTaskSpeechFragment">
 
     <ScrollView
@@ -15,37 +16,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tytuł zadania:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Opis zadania:"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Tekst do powiedzenia przez robota:"
-                android:textStyle="bold" />
+                android:textColor="@android:color/black"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Tekst do powiedzenia przez robota:" />
 
             <EditText
                 android:id="@+id/editTextSpeech"
@@ -69,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Głośność:"
                 android:textColor="@android:color/black" />
 
@@ -84,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Szybkość mowy (domyślnie 100):"
                 android:textColor="@android:color/black" />
 

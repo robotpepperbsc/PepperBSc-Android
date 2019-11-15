@@ -8,18 +8,8 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Steer the robot using buttons:"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-
-
     <ImageButton
-        android:id="@+id/buttonForward"
+        android:id="@+id/forward_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,7 +23,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/buttonLeft"
+            android:id="@+id/left_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="32dp"
@@ -42,7 +32,7 @@
 
 
         <ImageButton
-            android:id="@+id/buttonRight"
+            android:id="@+id/right_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -52,7 +42,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/buttonBackward"
+        android:id="@+id/backward_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

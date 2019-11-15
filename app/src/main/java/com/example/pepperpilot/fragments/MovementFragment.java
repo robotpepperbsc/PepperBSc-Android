@@ -5,9 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
@@ -15,8 +13,6 @@ import com.example.pepperpilot.enums.MovementDirection;
 import com.example.pepperpilot.interfaces.ServerCallback;
 import com.example.pepperpilot.requests.RequestMaker;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MovementFragment extends Fragment {
     private ImageButton forwardB;
@@ -27,11 +23,10 @@ public class MovementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movement, container, false);
 
-
-        forwardB = view.findViewById(R.id.buttonForward);
-        backwardB = view.findViewById(R.id.buttonBackward);
-        leftB = view.findViewById(R.id.buttonLeft);
-        rightB = view.findViewById(R.id.buttonRight);
+        forwardB = view.findViewById(R.id.forward_button);
+        backwardB = view.findViewById(R.id.backward_button);
+        leftB = view.findViewById(R.id.left_button);
+        rightB = view.findViewById(R.id.right_button);
 
 
         // Steering buttons actions

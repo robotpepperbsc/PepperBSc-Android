@@ -1,9 +1,10 @@
 package com.example.pepperpilot.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Scenario{
+public class Scenario implements Serializable {
     private String name;
     private String lastDateTimeEdited;
     private String description;

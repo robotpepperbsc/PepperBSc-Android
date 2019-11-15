@@ -30,11 +30,11 @@ public class AddTaskFragment extends Fragment implements ClickI {
 
 
         List<AddTaskType> addTaskTypeList = new ArrayList<>();
-        addTaskTypeList.add(new AddTaskType(TaskType.MOVE,"move",R.drawable.ic_directions_walk_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.TELL,"tell",R.drawable.ic_record_voice_over_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_IMAGE_ON_THE_SCREEN,"show image",R.drawable.ic_image_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_VIDEO_ON_THE_SCREEN,"show video",R.drawable.ic_movie_black_24dp));
-        addTaskTypeList.add(new AddTaskType(TaskType.BEHAVIORS,"zachowania",R.drawable.ic_directions_run_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.MOVE,"ruch",R.drawable.ic_directions_walk_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.TELL,"mowa",R.drawable.ic_record_voice_over_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_IMAGE_ON_THE_SCREEN,"zdjęcie",R.drawable.ic_image_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.SHOW_VIDEO_ON_THE_SCREEN,"film",R.drawable.ic_movie_black_24dp));
+        addTaskTypeList.add(new AddTaskType(TaskType.BEHAVIORS,"zachowania",R.drawable.ic_directions_walk_black_24dp));
 
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewTaskType);
@@ -74,6 +74,9 @@ public class AddTaskFragment extends Fragment implements ClickI {
                 break;
             case 3:
                 fragment = new NewTaskShowVideoFragment() ;
+                break;
+            case 4:
+                fragment = new NewTaskBehaviorFragment();
                 break;
             default:
                 fragment = new NewTaskMovementFragment();

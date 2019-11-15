@@ -2,7 +2,9 @@ package com.example.pepperpilot.models;
 
 import com.example.pepperpilot.enums.TaskType;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private TaskType taskType;
     private String taskName;
     private String taskDescription;

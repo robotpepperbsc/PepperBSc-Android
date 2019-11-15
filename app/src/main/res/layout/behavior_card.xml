@@ -15,7 +15,7 @@
         android:textSize="18sp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:paddingLeft="4dp"
+        android:layout_marginStart="6dp"
         android:fontFamily="sans-serif-condensed"
         android:textColor="@android:color/black"
         android:layout_height="wrap_content" />

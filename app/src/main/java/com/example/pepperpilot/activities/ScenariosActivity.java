@@ -50,12 +50,12 @@ public class ScenariosActivity extends AppCompatActivity implements CallbackI {
         EditScenarioFragment fragment = new EditScenarioFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
-        setTitle("Edit scenario");
+        setTitle("Edytuj scenariusz");
         setFragment(fragment);
     }
 
     private void handleCreateMode() {
-        setTitle("Create scenario");
+        setTitle("Stwórz nowy scenariusz");
         setFragment(new CreateScenarioFragment());
     }
 

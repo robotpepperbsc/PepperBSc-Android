@@ -3,6 +3,7 @@ package com.example.pepperpilot.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,8 +41,13 @@ public class BehaviorsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewBehaviors);
 
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         BehaviorsAdapter adapter = new BehaviorsAdapter(behaviorsList, getActivity());
         recyclerView.setAdapter(adapter);

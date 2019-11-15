@@ -53,7 +53,7 @@ public class EditScenarioFragment extends Fragment {
         addTaskB = view.findViewById(R.id.buttonAddTask);
         saveAndExitB = view.findViewById(R.id.buttonSaveAndExit);
 
-        Bundle bundle = getArguments();
+
 
         scenarios = ScenariosSingleton.getInstance().getScenarios();
 
