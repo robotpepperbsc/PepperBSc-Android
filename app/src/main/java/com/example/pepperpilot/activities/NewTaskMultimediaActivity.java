@@ -1,70 +1,73 @@
-package com.example.pepperpilot.fragments;
+package com.example.pepperpilot.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.pepperpilot.Parser;
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.adapters.MediaFileAdapter;
-import com.example.pepperpilot.enums.MediaType;
+import com.example.pepperpilot.adapters.MediaChooseFileAdapter;
 import com.example.pepperpilot.interfaces.JsonObjectCallback;
-import com.example.pepperpilot.models.Behavior;
+import com.example.pepperpilot.interfaces.MediaCallback;
 import com.example.pepperpilot.models.Media;
 import com.example.pepperpilot.requests.RequestMaker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 
-public class DisplayOnScreenFragment extends Fragment {
-
-    public static final int PICK_MEDIA_REQUEST = 1;
-    private EditText searchET;
-    private MediaFileAdapter multimediaFileAdapter;
-    private EditText durationET;
+public class NewTaskMultimediaActivity extends AppCompatActivity {
+    private MediaChooseFileAdapter mediaChooseFileAdapter;
+    private Button addTaskB;
     private LinkedList<Media> listFull;
     private LinkedList<Media> listPartial;
+    private TextView textView;
+    private EditText descriptionET;
+    private Media selectedMedia;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_task_multimedia);
+
+        addTaskB = findViewById(R.id.add_task_button);
+        descriptionET = findViewById(R.id.description_edit_text);
+        textView = findViewById(R.id.media_selection_text_view);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
         listFull = new LinkedList<>();
         listPartial = new LinkedList<>();
-    }
 
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_display_on_screen, container, false);
+        RecyclerView recyclerView = findViewById(R.id.multimedia_recycler_view);
 
-
-        searchET = view.findViewById(R.id.editTextSearch);
-        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
-
-
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMultimedia);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        multimediaFileAdapter = new MediaFileAdapter(listPartial, getActivity());
-        recyclerView.setAdapter(multimediaFileAdapter);
+        mediaChooseFileAdapter = new MediaChooseFileAdapter(listPartial, this, new MediaCallback() {
+            @Override
+            public void onClick(Media media) {
+                selectedMedia = media;
+                textView.setText(media.getName());
+
+            }
+        });
+
+
+        recyclerView.setAdapter(mediaChooseFileAdapter);
 
         swipeRefreshLayout.setRefreshing(true);
         RequestMaker.getMedia(new JsonObjectCallback() {
@@ -78,7 +81,7 @@ public class DisplayOnScreenFragment extends Fragment {
                     listFull.addAll(Parser.jsonObjectToMediaList(result));
                     listPartial.addAll(listFull);
 
-                    multimediaFileAdapter.notifyDataSetChanged();
+                    mediaChooseFileAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -89,7 +92,7 @@ public class DisplayOnScreenFragment extends Fragment {
             public void onError(JSONObject error) {
                 swipeRefreshLayout.setRefreshing(false);
             }
-        }, getActivity());
+        }, this);
 
 
 
@@ -107,7 +110,7 @@ public class DisplayOnScreenFragment extends Fragment {
                             listFull.addAll(Parser.jsonObjectToMediaList(result));
                             listPartial.addAll(listFull);
 
-                            multimediaFileAdapter.notifyDataSetChanged();
+                            mediaChooseFileAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -118,36 +121,26 @@ public class DisplayOnScreenFragment extends Fragment {
                     public void onError(JSONObject error) {
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, getActivity());
-            }
-        });
-
-        searchET.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                listPartial.clear();
-
-                for (Media m : listFull) {
-                    if (m.getName().contains(s.toString())) listPartial.add(m);
-                }
-
-                //Wybierz z listy tylko te slowa ktore zawieraja tekst
-                multimediaFileAdapter.notifyDataSetChanged();
+                }, NewTaskMultimediaActivity.this);
             }
         });
 
 
-        return view;
+
+
+
+
+
+        addTaskB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("name",selectedMedia.getName());
+                intent.putExtra("mediaType",selectedMedia.getType());
+                intent.putExtra("description",descriptionET.getText().toString());
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
     }
-
 }

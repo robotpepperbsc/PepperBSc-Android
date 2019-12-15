@@ -1,7 +1,9 @@
 package com.example.pepperpilot.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,21 +15,26 @@ import com.example.pepperpilot.R;
 import com.example.pepperpilot.models.Recording;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class RecordingsFragment extends Fragment {
 
     private List<Recording> recordingList;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recordingList = new LinkedList<>();
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recordings,container,false);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
+
         recordingList = new ArrayList<>();
-        recordingList.add(new Recording("VID0001","2019-10-10, 17:34"));
-        recordingList.add(new Recording("VID0002","2019-04-10, 16:54"));
-        recordingList.add(new Recording("VID0003","2019-10-19, 08:51"));
-        recordingList.add(new Recording("VID0004","2019-03-02, 10:00"));
-        recordingList.add(new Recording("VID0005","2019-05-17, 14:34"));
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewRecordings);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -36,6 +43,16 @@ public class RecordingsFragment extends Fragment {
         RecordingsAdapter recordingAdapter = new RecordingsAdapter(recordingList,getActivity());
         recyclerView.setAdapter(recordingAdapter);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+
+
+
+
+            }
+        });
 
         return view;
     }

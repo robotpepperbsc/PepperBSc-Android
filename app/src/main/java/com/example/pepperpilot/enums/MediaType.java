@@ -1,6 +1,6 @@
 package com.example.pepperpilot.enums;
 
-public enum MultimediaFileType {
+public enum MediaType {
     IMAGE,
     MOVIE
 }

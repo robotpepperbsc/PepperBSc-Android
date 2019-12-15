@@ -1,56 +1,95 @@
 package com.example.pepperpilot.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.SeekBar;
-import android.widget.Spinner;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.pepperpilot.R;
+import com.example.pepperpilot.interfaces.JsonObjectCallback;
+import com.example.pepperpilot.interfaces.StringCallback;
+import com.example.pepperpilot.requests.RequestMaker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SettingsFragment extends Fragment {
 
-    private Spinner voiceS;
-    private Spinner languageS;
-    private SeekBar volumeSB;
-
-
+    private Button getLogsB;
+    private TextView batteryTV;
+    private TextView queueTV;
+    private TextView recordingTV;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings,container,false);
-
-        languageS = view.findViewById(R.id.spinnerLanguage);
-        String[] languagesArray = new String[]{"polish","english"};
-        ArrayAdapter<String> languagesArrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.support_simple_spinner_dropdown_item,languagesArray);
-        languageS.setAdapter(languagesArrayAdapter);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
 
-        voiceS = view.findViewById(R.id.spinnerVoice);
-        String[] voiceArray = new String[]{"polish","english"};
-        ArrayAdapter<String> voicesArrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.support_simple_spinner_dropdown_item,voiceArray);
-        voiceS.setAdapter(voicesArrayAdapter);
+        batteryTV = view.findViewById(R.id.log_battery_info);
+        queueTV = view.findViewById(R.id.loq_queue_info);
+        recordingTV = view.findViewById(R.id.log_recording_info);
+        getLogsB = view.findViewById(R.id.button_get_logs);
 
-        volumeSB = view.findViewById(R.id.seekBarVoicwVolume);
-        volumeSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        getLogsB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onClick(View v) {
+                RequestMaker.getLogger(new JsonObjectCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        try {
 
-            }
+                            int batteryValue = Integer.parseInt(result.getString("battery").split("%")[0]);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                            if (batteryValue <= 20) {
+                                batteryTV.setTextColor(Color.parseColor("#e53935"));
+                            } else if (batteryValue <= 60) {
+                                batteryTV.setTextColor(Color.parseColor("#FFB300"));
+                            } else {
+                                batteryTV.setTextColor(Color.parseColor("#43A047"));
+                            }
+                            batteryTV.setText(result.getString("battery"));
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                            boolean is_queue_empty = result.getBoolean("is_queue_empty");
+                            boolean is_recording = result.getBoolean("is_recording");
 
+                            if (is_queue_empty) {
+                                queueTV.setText("Tak");
+                                queueTV.setTextColor(Color.parseColor("#43A047"));
+                            } else {
+                                queueTV.setText("Nie");
+                                queueTV.setTextColor(Color.parseColor("#e53935"));
+                            }
+
+                            if (is_recording) {
+                                recordingTV.setText("Tak");
+                                recordingTV.setTextColor(Color.parseColor("#43A047"));
+                            } else {
+                                recordingTV.setText("Nie");
+                                recordingTV.setTextColor(Color.parseColor("#e53935"));
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(JSONObject error) {
+                        batteryTV.setText("Connection problem");
+                        queueTV.setText("Connection problem");
+                        recordingTV.setText("Connection problem");
+                    }
+                }, getActivity());
             }
         });
-
 
         return view;
     }

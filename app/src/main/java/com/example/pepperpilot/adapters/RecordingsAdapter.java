@@ -46,8 +46,8 @@ public class RecordingsAdapter extends RecyclerView.Adapter<RecordingsAdapter.My
 
     @Override
     public void onBindViewHolder(RecordingsAdapter.MyViewHolder holder, int position) {
-        holder.titleTV.setText(recordingList.get(position).getTitle());
-        holder.recordDateTimeTV.setText(recordingList.get(position).getRecordDateTime());
+        holder.titleTV.setText(recordingList.get(position).getName());
+        holder.recordDateTimeTV.setText(recordingList.get(position).getName());
 
         holder.deleteRecordingB.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,6 +25,10 @@ import com.example.pepperpilot.fragments.RecordingsFragment;
 import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
 import com.example.pepperpilot.fragments.SpeechFragment;
+import com.example.pepperpilot.interfaces.StringCallback;
+import com.example.pepperpilot.models.Scenario;
+import com.example.pepperpilot.requests.RequestMaker;
+
 
 
 public class MainActivity extends AppCompatActivity
@@ -61,9 +65,23 @@ public class MainActivity extends AppCompatActivity
         stopB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"STOP",Toast.LENGTH_SHORT).show();
+                RequestMaker.clearQueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(MainActivity.this,"STOP",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+
+                    }
+                },MainActivity.this);
+
             }
         });
+
+
+        Scenario scenario = new Scenario("NAzwa","opis","2019-10-10");
 
     }
 

@@ -1,6 +1,6 @@
 package com.example.pepperpilot.interfaces;
 
-public interface ServerCallback {
+public interface StringCallback {
     void onSuccess(String result);
     void onError(String result);
 }

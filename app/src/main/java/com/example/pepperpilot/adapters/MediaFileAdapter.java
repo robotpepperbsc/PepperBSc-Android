@@ -11,13 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.enums.MultimediaFileType;
-import com.example.pepperpilot.models.MultimediaFile;
+import com.example.pepperpilot.enums.MediaType;
+import com.example.pepperpilot.interfaces.StringCallback;
+import com.example.pepperpilot.models.Media;
+import com.example.pepperpilot.requests.RequestMaker;
 
 import java.util.List;
 
-public class MultimediaFileAdapter extends RecyclerView.Adapter<MultimediaFileAdapter.MyViewHolder> {
-    private List<MultimediaFile> filesList;
+public class MediaFileAdapter extends RecyclerView.Adapter<MediaFileAdapter.MyViewHolder> {
+    private List<Media> filesList;
     private Context context;
 
 
@@ -34,26 +36,26 @@ public class MultimediaFileAdapter extends RecyclerView.Adapter<MultimediaFileAd
     }
 
 
-    public MultimediaFileAdapter(List<MultimediaFile> filesList, Context context) {
+    public MediaFileAdapter(List<Media> filesList, Context context) {
         this.filesList = filesList;
         this.context = context;
     }
 
 
-    public MultimediaFileAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MediaFileAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.multimedia_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MultimediaFileAdapter.MyViewHolder holder, int position) {
-        final MultimediaFile file = filesList.get(position);
+    public void onBindViewHolder(final MediaFileAdapter.MyViewHolder holder, int position) {
+        final Media file = filesList.get(position);
 
 
-        Log.d("BIND - VISIBLE", file.getFileName());
-        holder.nameTV.setText(file.getFileName());
+        Log.d("BIND - VISIBLE", file.getName());
+        holder.nameTV.setText(file.getName());
 
-        if (file.getType().equals(MultimediaFileType.IMAGE)) {
+        if (file.getType().equals(MediaType.IMAGE)) {
             holder.typeIV.setImageResource(R.drawable.ic_image_green_24dp);
         } else {
             holder.typeIV.setImageResource(R.drawable.ic_movie_orange_24dp);
@@ -62,7 +64,20 @@ public class MultimediaFileAdapter extends RecyclerView.Adapter<MultimediaFileAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, file.getFileName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, file.getName(), Toast.LENGTH_SHORT).show();
+
+                RequestMaker.displayOnScreen(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                    }
+
+                    @Override
+                    public void onError(String result) {
+
+                    }
+                },file,context);
+
             }
         });
 

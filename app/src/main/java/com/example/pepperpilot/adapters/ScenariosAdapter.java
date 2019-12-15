@@ -2,19 +2,20 @@ package com.example.pepperpilot.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.ScenariosSingleton;
 import com.example.pepperpilot.activities.ScenariosActivity;
 import com.example.pepperpilot.enums.Mode;
+import com.example.pepperpilot.interfaces.StringCallback;
 import com.example.pepperpilot.models.Scenario;
+import com.example.pepperpilot.requests.RequestMaker;
 
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
         TextView nameTV;
         TextView descriptionTV;
         TextView editDateTimeTV;
-        ImageButton editB;
-        ImageButton deleteB;
+        FloatingActionButton editB;
+        FloatingActionButton deleteB;
 
         public MyViewHolder(View view) {
             super(view);
@@ -48,7 +49,7 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
 
 
     public ScenariosAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.scenario_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.scenario_card, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -63,8 +64,8 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             public void onClick(View v) {
                 Intent intent = new Intent(context, ScenariosActivity.class);
                 intent.putExtra("mode", Mode.SHOW);
-                intent.putExtra("position",holder.getAdapterPosition());
-                intent.putExtra("name",scenarioList.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("position", holder.getAdapterPosition());
+                intent.putExtra("name", scenarioList.get(holder.getAdapterPosition()).getName());
                 context.startActivity(intent);
             }
         });
@@ -74,7 +75,9 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
             public void onClick(View v) {
                 Intent intent = new Intent(context, ScenariosActivity.class);
                 intent.putExtra("mode", Mode.EDIT);
-                intent.putExtra("position",holder.getAdapterPosition());
+                intent.putExtra("position", holder.getAdapterPosition());
+                intent.putExtra("name", scenarioList.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("description",scenarioList.get(holder.getAdapterPosition()).getDescription());
                 context.startActivity(intent);
             }
         });
@@ -82,9 +85,27 @@ public class ScenariosAdapter extends RecyclerView.Adapter<ScenariosAdapter.MyVi
         holder.deleteB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Delete clicked",Toast.LENGTH_SHORT).show();
-                ScenariosSingleton.getInstance().getScenarios().remove(holder.getAdapterPosition());
+                Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
+
+
+                RequestMaker.removeScenario(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        //ScenariosSingleton.getInstance().getScenarios().remove(holder.getAdapterPosition());
+                        Toast.makeText(context, "Usunięto pomyślnie!", Toast.LENGTH_SHORT).show();
+                        scenarioList.remove(position);
+                        notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+                        Toast.makeText(context, "Problem z usunięciem!", Toast.LENGTH_SHORT).show();
+                    }
+                }, context, scenarioList.get(position).getName());
+
                 notifyDataSetChanged();
+
+
             }
         });
 

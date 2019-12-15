@@ -4,10 +4,14 @@ import com.example.pepperpilot.enums.TaskType;
 
 import java.io.Serializable;
 
-public class Task implements Serializable {
-    private TaskType taskType;
-    private String taskName;
-    private String taskDescription;
+public class Task{
+    protected TaskType taskType;
+    protected String taskName;
+    protected String taskDescription;
+
+    public Task() {
+
+    }
 
     public Task(TaskType taskType, String taskName, String taskDescription) {
         this.taskType = taskType;
@@ -20,14 +24,14 @@ public class Task implements Serializable {
     }
 
     public String getStringTaskType() {
-        if(taskType.equals(TaskType.TELL)) {
+        if(taskType.equals(TaskType.SPEECH)) {
             return "MOWA";
-        } else if(taskType.equals(TaskType.MOVE)) {
+        } else if(taskType.equals(TaskType.MOVEMENT)) {
             return "RUCH";
-        } else if(taskType.equals(TaskType.SHOW_IMAGE_ON_THE_SCREEN)) {
-            return "ZDJECIE";
-        } else if(taskType.equals(TaskType.SHOW_VIDEO_ON_THE_SCREEN)) {
-            return "FILM";
+        } else if(taskType.equals(TaskType.SHOW_MULTIMEDIA)) {
+            return "MULTIMEDIA";
+        } else if(taskType.equals(TaskType.BEHAVIOR)) {
+            return "ZACHOWANIE";
         }
         return "";
     }

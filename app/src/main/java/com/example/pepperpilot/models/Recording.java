@@ -1,30 +1,40 @@
 package com.example.pepperpilot.models;
 
+import com.example.pepperpilot.enums.MediaType;
 import com.example.pepperpilot.enums.TaskType;
 
 public class Recording {
-    private String title;
-    private String recordDateTime;
+    private String name;
+    private MediaType type;
+    private int duration;
 
-
-    public Recording(String title, String recordDateTime) {
-        this.title = title;
-        this.recordDateTime = recordDateTime;
+    public Recording(String name, MediaType type, int duration) {
+        this.name = name;
+        this.type = type;
+        this.duration = duration;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getRecordDateTime() {
-        return recordDateTime;
+    public MediaType getType() {
+        return type;
     }
 
-    public void setRecordDateTime(String recordDateTime) {
-        this.recordDateTime = recordDateTime;
+    public void setType(MediaType type) {
+        this.type = type;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }

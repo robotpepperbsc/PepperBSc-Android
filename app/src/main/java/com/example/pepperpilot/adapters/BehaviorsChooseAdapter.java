@@ -6,18 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.interfaces.StringCallback;
+import com.example.pepperpilot.interfaces.BehaviorCallback;
 import com.example.pepperpilot.models.Behavior;
-import com.example.pepperpilot.requests.RequestMaker;
 
 import java.util.List;
 
-public class BehaviorsAdapter extends RecyclerView.Adapter<BehaviorsAdapter.MyViewHolder> {
+public class BehaviorsChooseAdapter extends RecyclerView.Adapter<BehaviorsChooseAdapter.MyViewHolder> {
     private List<Behavior> behaviors;
     private Context context;
+    private BehaviorCallback behaviorCallback;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView behaviorNameTV;
@@ -28,37 +27,26 @@ public class BehaviorsAdapter extends RecyclerView.Adapter<BehaviorsAdapter.MyVi
         }
     }
 
-    public BehaviorsAdapter(List<Behavior> behaviors, Context context) {
+    public BehaviorsChooseAdapter(List<Behavior> behaviors, Context context, BehaviorCallback behaviorCallback) {
         this.behaviors = behaviors;
         this.context = context;
+        this.behaviorCallback = behaviorCallback;
     }
 
     @Override
-    public BehaviorsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
+    public BehaviorsChooseAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.behavior_card,parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final BehaviorsAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final BehaviorsChooseAdapter.MyViewHolder holder, final int position) {
         holder.behaviorNameTV.setText(behaviors.get(position).getBehaviorName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                RequestMaker.sendBehavior(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Toast.makeText(context, "SUCCESS!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(String result) {
-                        Toast.makeText(context,"FAILURE",Toast.LENGTH_SHORT).show();
-                    }
-                },behaviors.get(position).getBehaviorName(),context);
-
+                behaviorCallback.onClick(behaviors.get(position));
             }
         });
     }

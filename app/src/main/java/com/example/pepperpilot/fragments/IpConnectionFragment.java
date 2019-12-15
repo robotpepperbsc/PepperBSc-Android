@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.interfaces.ServerCallback;
+import com.example.pepperpilot.interfaces.StringCallback;
 import com.example.pepperpilot.requests.RequestMaker;
 
 public class IpConnectionFragment extends Fragment {
@@ -40,15 +40,16 @@ public class IpConnectionFragment extends Fragment {
         passwordET = view.findViewById(R.id.password_edit_text);
         connectionStatusTV = view.findViewById(R.id.connection_status_text_view);
 
-        ipAddressET.setText(RequestMaker.IP);
-        portAddressET.setText(RequestMaker.PORT);
 
         connectB.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                String ip = ipAddressET.getText().toString();
+                int port = Integer.parseInt(portAddressET.getText().toString());
+                String password = passwordET.getText().toString();
 
-                RequestMaker.connect(new ServerCallback() {
+                RequestMaker.connect(new StringCallback() {
                     @Override
                     public void onSuccess(String result) {
                         connectionStatusTV.setText("Połączono pomyślnie!");
@@ -60,7 +61,7 @@ public class IpConnectionFragment extends Fragment {
                         connectionStatusTV.setText("Błąd połączenia!");
                         connectionStatusTV.setTextColor(Color.parseColor("#e53935"));
                     }
-                }, getActivity());
+                }, getActivity(), ip, port, password);
 
 
             }

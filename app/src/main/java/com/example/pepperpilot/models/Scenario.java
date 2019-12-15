@@ -2,19 +2,24 @@ package com.example.pepperpilot.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Scenario implements Serializable {
     private String name;
     private String lastDateTimeEdited;
     private String description;
-    private List<Task> tasks;
+    private LinkedList<Task> tasks;
 
-    public Scenario(String name, String description,String lastDateTimeEdited) {
+    public Scenario(String name, String description, String lastDateTimeEdited) {
         this.name = name;
         this.description = description;
         this.lastDateTimeEdited = lastDateTimeEdited;
-        this.tasks = new ArrayList<>();
+        this.tasks = new LinkedList<>();
+    }
+
+    public Scenario() {
+        this.tasks = new LinkedList<>();
     }
 
     public String getName() {
@@ -37,7 +42,7 @@ public class Scenario implements Serializable {
         this.tasks.add(task);
     }
 
-    public List<Task> getTasks() {
+    public List<Task> getTasksList() {
         return tasks;
     }
 

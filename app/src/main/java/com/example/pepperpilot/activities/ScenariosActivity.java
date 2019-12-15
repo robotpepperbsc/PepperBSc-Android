@@ -14,20 +14,24 @@ import android.widget.Toast;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.enums.CallbackFragment;
 import com.example.pepperpilot.enums.Mode;
-import com.example.pepperpilot.fragments.AddTaskFragment;
 import com.example.pepperpilot.fragments.ManageScenarioFragment;
 import com.example.pepperpilot.fragments.ScenarioTasksFragment;
-import com.example.pepperpilot.interfaces.CallbackI;
-import com.example.pepperpilot.interfaces.CallbackTask;
+import com.example.pepperpilot.interfaces.StringCallback;
 import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Task;
+import com.example.pepperpilot.requests.RequestMaker;
 
-public class ScenariosActivity extends AppCompatActivity implements CallbackI, CallbackTask {
+
+public class ScenariosActivity extends AppCompatActivity{
     private Mode mode;
     private static int scenarioPosition = -1;
     private TextView titleTV;
     private Button stopB;
     private Scenario currentScenario;
+    private String scenarioName;
+    private String description;
+
+    public static Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,51 +40,72 @@ public class ScenariosActivity extends AppCompatActivity implements CallbackI, C
 
         stopB = findViewById(R.id.stop_button);
         titleTV = findViewById(R.id.toolbar_title_text_view);
+
         Intent intent = getIntent();
         mode = (Mode) intent.getSerializableExtra("mode");
+        scenarioName = intent.getStringExtra("name");
+        description = intent.getStringExtra("description");
 
-        currentScenario = new Scenario("NAME","DESCRIPTION","---");
 
-        if (mode.equals(Mode.EDIT) || mode.equals(Mode.CREATE)) {
-            handleManageMode(mode);
-        } else if (mode.equals(Mode.SHOW)) {
-            String name = intent.getStringExtra("name");
-            scenarioPosition = intent.getIntExtra("position", -1);
-            handleShow(name);
+        switch (mode) {
+            case EDIT:
+                handleManageMode();
+                break;
+            case CREATE:
+                handleManageMode();
+                break;
+            case SHOW:
+                handleShow(intent.getStringExtra("name"));
+                break;
         }
+
 
         stopB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ScenariosActivity.this, "STOP", Toast.LENGTH_SHORT).show();
+
+                RequestMaker.clearQueue(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(ScenariosActivity.this, "STOP", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(String result) {
+
+                    }
+                },ScenariosActivity.this);
+
             }
         });
 
     }
 
-    public static int getScenarioPosition() {
-        return scenarioPosition;
-    }
 
-    private void handleManageMode(Mode mode) {
+    private void handleManageMode() {
         ManageScenarioFragment fragment = new ManageScenarioFragment();
         Bundle args = new Bundle();
-        args.putSerializable("mode", mode);
-        fragment.setArguments(args);
+
 
         if (mode.equals(Mode.EDIT)) {
             titleTV.setText("Edytuj scenariusz");
+            args.putString("name", scenarioName);
+            args.putString("description",description);
+
         } else if (mode.equals(Mode.CREATE)) {
             titleTV.setText("Stwórz scenariusz");
         }
+        args.putSerializable("mode", mode);
 
+        fragment.setArguments(args);
         setFragment(fragment);
     }
 
     private void handleShow(String name) {
         ScenarioTasksFragment fragment = new ScenarioTasksFragment();
         Bundle args = new Bundle();
-        setTitle(name);
+        args.putString("name",scenarioName);
+        titleTV.setText(name);
         fragment.setArguments(args);
         setFragment(fragment);
     }
@@ -91,32 +116,10 @@ public class ScenariosActivity extends AppCompatActivity implements CallbackI, C
         transaction.commit();
     }
 
-    @Override
-    public void callbackMethod(CallbackFragment callbackFragment) {
-        Log.d("=======================", "=====================");
-        Log.d("ARG: : : ", String.valueOf(callbackFragment));
-        Log.d("=======================", "=====================");
-
-        if (callbackFragment.equals(CallbackFragment.ADD_TASK)) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.scenario_fragment, new AddTaskFragment());
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
-
-
-    }
 
     @Override
     protected void onStop() {
         super.onStop();
     }
 
-    @Override
-    public void onClick(Task task) {
-        Log.d("Callback","Callback with task");
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.scenario_fragment, new ManageScenarioFragment());
-        transaction.commit();
-    }
 }
