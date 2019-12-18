@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.adapters.BehaviorsChooseAdapter;
 import com.example.pepperpilot.interfaces.BehaviorCallback;

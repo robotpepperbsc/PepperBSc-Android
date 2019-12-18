@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.adapters.TasksAdapter;
 import com.example.pepperpilot.dialogs.RunScenarioDialog;
@@ -26,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.LinkedList;
-import java.util.List;
 
 public class ScenarioTasksFragment extends Fragment {
     private LinkedList<Task> taskList;

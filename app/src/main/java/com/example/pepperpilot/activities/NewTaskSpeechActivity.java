@@ -12,8 +12,6 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.enums.TaskType;
-import com.example.pepperpilot.models.Speech;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,8 +85,7 @@ public class NewTaskSpeechActivity extends AppCompatActivity {
             stringBuilder.append(textET.getText().toString().substring(0,100)).append("...");
         }
 
-        stringBuilder.append("\n\n");
-        stringBuilder.append("Parametry:\n");
+        stringBuilder.append("\n");
         stringBuilder.append("Głośność: ").append(voiceVolumeSB.getProgress() / 100.0).append("\n");
         stringBuilder.append("Szybkość: ").append(speedET.getText().toString()).append("\n");
         stringBuilder.append("Język: ").append(languageS.getSelectedItem().toString()).append("\n");

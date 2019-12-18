@@ -1,4 +1,4 @@
-package com.example.pepperpilot;
+package com.example.pepperpilot.requests;
 
 import com.example.pepperpilot.enums.MediaType;
 import com.example.pepperpilot.enums.MovementDirection;

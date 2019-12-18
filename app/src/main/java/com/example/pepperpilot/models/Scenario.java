@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Scenario implements Serializable {
+public class Scenario {
     private String name;
     private String lastDateTimeEdited;
     private String description;

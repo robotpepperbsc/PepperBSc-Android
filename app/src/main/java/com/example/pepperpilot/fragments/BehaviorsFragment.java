@@ -15,11 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.adapters.BehaviorsAdapter;
 import com.example.pepperpilot.interfaces.JsonObjectCallback;
-import com.example.pepperpilot.interfaces.StringCallback;
 import com.example.pepperpilot.models.Behavior;
 import com.example.pepperpilot.requests.RequestMaker;
 

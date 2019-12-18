@@ -14,20 +14,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.adapters.MediaFileAdapter;
-import com.example.pepperpilot.enums.MediaType;
 import com.example.pepperpilot.interfaces.JsonObjectCallback;
-import com.example.pepperpilot.models.Behavior;
 import com.example.pepperpilot.models.Media;
 import com.example.pepperpilot.requests.RequestMaker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 
 public class DisplayOnScreenFragment extends Fragment {

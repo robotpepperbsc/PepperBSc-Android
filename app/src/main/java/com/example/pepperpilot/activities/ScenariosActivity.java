@@ -5,29 +5,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pepperpilot.R;
-import com.example.pepperpilot.enums.CallbackFragment;
 import com.example.pepperpilot.enums.Mode;
 import com.example.pepperpilot.fragments.ManageScenarioFragment;
 import com.example.pepperpilot.fragments.ScenarioTasksFragment;
 import com.example.pepperpilot.interfaces.StringCallback;
-import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Task;
 import com.example.pepperpilot.requests.RequestMaker;
 
 
 public class ScenariosActivity extends AppCompatActivity{
     private Mode mode;
-    private static int scenarioPosition = -1;
     private TextView titleTV;
     private Button stopB;
-    private Scenario currentScenario;
     private String scenarioName;
     private String description;
 

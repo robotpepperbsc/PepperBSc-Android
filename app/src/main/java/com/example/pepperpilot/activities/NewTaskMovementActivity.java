@@ -113,7 +113,7 @@ public class NewTaskMovementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 distanceLL.setVisibility(View.VISIBLE);
                 rotationLL.setVisibility(View.GONE);
-                direction = MovementDirection.FORWARD;
+                direction = FORWARD;
                 taskName = "do przodu";
             }
         });
@@ -133,7 +133,7 @@ public class NewTaskMovementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 distanceLL.setVisibility(View.GONE);
                 rotationLL.setVisibility(View.VISIBLE);
-                direction = MovementDirection.LEFT;
+                direction = LEFT;
                 taskName = "w lewo";
             }
         });
@@ -143,7 +143,7 @@ public class NewTaskMovementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 distanceLL.setVisibility(View.GONE);
                 rotationLL.setVisibility(View.VISIBLE);
-                direction = MovementDirection.RIGHT;
+                direction = RIGHT;
                 taskName = "w prawo";
             }
         });

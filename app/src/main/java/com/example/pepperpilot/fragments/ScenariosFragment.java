@@ -1,6 +1,5 @@
 package com.example.pepperpilot.fragments;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.activities.ScenariosActivity;
 import com.example.pepperpilot.adapters.ScenariosAdapter;
 import com.example.pepperpilot.R;
@@ -26,36 +25,21 @@ import com.example.pepperpilot.requests.RequestMaker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class ScenariosFragment extends Fragment {
     private List<Scenario> scenarioList;
     private FloatingActionButton floatingActionButton;
     private ScenariosAdapter scenariosAdapter;
-    private JSONObject object;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String text = "{\"scenarios\": [{\"name\": \"xd\", \"actions\": [{\"language\": \"English\", \"text\": \"w koncu\", \"volume\": 0.8, \"command\": \"say\", \"type\": \"speech\", \"speech_speed\": 100}, {\"file_type\": \"jpg\", \"type\": \"media\", \"name\": \"car\"}, {\"command\": \"move_forward\", \"type\": \"movement\", \"distance\": 0.3}], \"description\": \"xx222t\", \"last_mod_date\": \"2019-10-10\"}]}";
-
-        try {
-            object = new JSONObject(text);
-            Log.d("JSON",object.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-
-        try {
-            scenarioList = Parser.jsonObjectToScenariosList(object);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        scenarioList = new LinkedList<>();
 
     }
 
@@ -82,7 +66,11 @@ public class ScenariosFragment extends Fragment {
             }
         });
 
-
+        scenarioList.add(new Scenario("Pokaz w szkole nr 2","Tutaj znajduje się opis scenariusza związanego z pokazem robota w szkole nr 2.","2019-11-20, 15:43"));
+        scenarioList.add(new Scenario("Pokaz demonstracyjny","Tutaj znajduje się opis pokazu demonstracyjnego.","2019-11-21, 12:13"));
+        scenarioList.add(new Scenario("Pokaz dla przedszkola","Tutaj znajduje się opis scenariusza związanego z pokazem robota w pzedszkolu.","2019-11-22, 13:53"));
+        scenariosAdapter.notifyDataSetChanged();
+        /*
         swipeRefreshLayout.setRefreshing(true);
         RequestMaker.getScenarios(new JsonObjectCallback() {
             @Override
@@ -102,7 +90,7 @@ public class ScenariosFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         },getActivity());
-
+*/
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

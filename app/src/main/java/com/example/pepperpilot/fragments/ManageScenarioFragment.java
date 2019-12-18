@@ -1,6 +1,5 @@
 package com.example.pepperpilot.fragments;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.pepperpilot.Parser;
+import com.example.pepperpilot.requests.Parser;
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.dialogs.TaskChoiceDialog;
 import com.example.pepperpilot.activities.NewTaskBehaviorActivity;
@@ -36,15 +35,10 @@ import com.example.pepperpilot.models.Media;
 import com.example.pepperpilot.models.Movement;
 import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Speech;
-import com.example.pepperpilot.models.Task;
 import com.example.pepperpilot.requests.RequestMaker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
