@@ -156,7 +156,7 @@ public class ManageScenarioFragment extends Fragment {
                             @Override
                             public void onSuccess(String result) {
                                 Toast.makeText(getActivity(),"SUCCESS!",Toast.LENGTH_SHORT).show();
-
+                                getActivity().finish();
                             }
 
                             @Override
@@ -223,6 +223,7 @@ public class ManageScenarioFragment extends Fragment {
                 String taskName = data.getStringExtra("taskName");
                 MovementDirection direction = (MovementDirection) data.getSerializableExtra("movementDirection");
                 float distance = data.getFloatExtra("distance", (float) 0.1);
+
 
                 scenario.addTask(new Movement(TaskType.MOVEMENT, taskName, description, direction, distance));
             }

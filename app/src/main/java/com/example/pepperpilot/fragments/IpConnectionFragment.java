@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.interfaces.StringCallback;
 import com.example.pepperpilot.requests.RequestMaker;
+
+import okhttp3.internal.Util;
 
 public class IpConnectionFragment extends Fragment {
 
@@ -45,23 +48,31 @@ public class IpConnectionFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                String ip = ipAddressET.getText().toString();
-                int port = Integer.parseInt(portAddressET.getText().toString());
-                String password = passwordET.getText().toString();
 
-                RequestMaker.connect(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result) {
-                        connectionStatusTV.setText("Połączono pomyślnie!");
-                        connectionStatusTV.setTextColor(Color.parseColor("#43A047"));
-                    }
+                if(isAnyFieldEmpty()) {
+                    Toast.makeText(getActivity(),"Uzupełnij wszystkie pola!",Toast.LENGTH_SHORT).show();
+                } else {
 
-                    @Override
-                    public void onError(String result) {
-                        connectionStatusTV.setText("Błąd połączenia!");
-                        connectionStatusTV.setTextColor(Color.parseColor("#e53935"));
-                    }
-                }, getActivity(), ip, port, password);
+                    String ip = ipAddressET.getText().toString();
+                    int port = Integer.parseInt(portAddressET.getText().toString());
+                    String password = passwordET.getText().toString();
+
+                    RequestMaker.connect(new StringCallback() {
+                        @Override
+                        public void onSuccess(String result) {
+                            connectionStatusTV.setText("Połączono pomyślnie!");
+                            connectionStatusTV.setTextColor(Color.parseColor("#43A047"));
+                        }
+
+                        @Override
+                        public void onError(String result) {
+                            connectionStatusTV.setText("Błąd połączenia!");
+                            connectionStatusTV.setTextColor(Color.parseColor("#e53935"));
+                        }
+                    }, getActivity(), ip, port, password);
+                }
+
+
 
 
             }
@@ -69,6 +80,10 @@ public class IpConnectionFragment extends Fragment {
 
 
         return view;
+    }
+
+    private boolean isAnyFieldEmpty() {
+        return ipAddressET.getText().toString().equals("") || portAddressET.getText().toString().equals("") || passwordET.getText().toString().equals("");
     }
 
 

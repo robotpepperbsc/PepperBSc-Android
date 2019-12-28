@@ -38,19 +38,20 @@
                     android:id="@+id/ip_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     android:layout_weight="0.7"
                     android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
                     android:hint="Adres IP serwera"
-                    android:inputType="textPersonName" />
+                    android:inputType="numberSigned|text|textCapCharacters" />
 
                 <EditText
                     android:id="@+id/port_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     android:layout_weight="0.3"
-                    android:hint="PORT" />
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="PORT"
+                    android:inputType="numberSigned" />
             </LinearLayout>
 
             <TextView

@@ -20,7 +20,6 @@ import com.example.pepperpilot.models.Movement;
 import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.models.Speech;
 import com.example.pepperpilot.models.Task;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +51,6 @@ public class RequestMaker {
             @Override
             public void onErrorResponse(VolleyError error) {
                 serverCallback.onError(error.toString());
-                Log.e("Connect", error.toString());
             }
         }) {
             @Override
@@ -551,8 +549,6 @@ public class RequestMaker {
                 params.put("actions", actionsArray);
 
                 Log.d("AddScenario", new JSONObject(params).toString());
-
-
                 return new JSONObject(params).toString().getBytes();
             }
 
@@ -564,20 +560,6 @@ public class RequestMaker {
 
         VolleySingleton.getInstance(context).getRequestQueue().add(request);
     }
-
-
-
-
-    public static void startRecording(StringCallback stringCallback, Context context) {
-
-    }
-
-
-    public static void getRecordings(StringCallback serverCallback, Context context) {
-
-
-    }
-
 
     private static String getIpPort(String IP, int port) {
         return IP + ":" + port;

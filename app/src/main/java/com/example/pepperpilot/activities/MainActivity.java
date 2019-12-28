@@ -26,7 +26,6 @@ import com.example.pepperpilot.fragments.ScenariosFragment;
 import com.example.pepperpilot.fragments.SettingsFragment;
 import com.example.pepperpilot.fragments.SpeechFragment;
 import com.example.pepperpilot.interfaces.StringCallback;
-import com.example.pepperpilot.models.Scenario;
 import com.example.pepperpilot.requests.RequestMaker;
 
 
@@ -68,21 +67,17 @@ public class MainActivity extends AppCompatActivity
                 RequestMaker.clearQueue(new StringCallback() {
                     @Override
                     public void onSuccess(String result) {
-                        Toast.makeText(MainActivity.this,"STOP",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,"STOP success!",Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(String result) {
-
+                        Toast.makeText(MainActivity.this,"STOP error!",Toast.LENGTH_SHORT).show();
                     }
                 },MainActivity.this);
 
             }
         });
-
-
-        Scenario scenario = new Scenario("NAzwa","opis","2019-10-10");
-
     }
 
 
@@ -142,7 +137,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-
-
     }
 }

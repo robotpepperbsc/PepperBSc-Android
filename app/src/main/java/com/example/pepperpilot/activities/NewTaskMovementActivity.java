@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pepperpilot.R;
 import com.example.pepperpilot.enums.MovementDirection;
@@ -79,6 +80,20 @@ public class NewTaskMovementActivity extends AppCompatActivity {
             public void onClick(View v) {
                 float distance;
 
+                if(forwardRB.isChecked()) {
+                    direction = FORWARD;
+                    taskName = "do przodu";
+                } else if(backwardRB.isChecked()) {
+                    direction = BACK;
+                    taskName = "do tyłu";
+                } else if(leftRB.isChecked()) {
+                    direction = LEFT;
+                    taskName = "w lewo";
+                } else if(rightRB.isChecked()) {
+                    direction = RIGHT;
+                    taskName = "w prawo";
+                }
+
 
                 if(direction.equals(FORWARD)) {
                     description = "W przód o " + distanceET.getText().toString() + " metrów.";
@@ -95,7 +110,7 @@ public class NewTaskMovementActivity extends AppCompatActivity {
                 intent.putExtra("taskName",taskName);
                 intent.putExtra("movementDirection",direction);
 
-                if(direction.equals(MovementDirection.FORWARD) || direction.equals(BACK)) {
+                if(direction.equals(FORWARD) || direction.equals(BACK)) {
                     distance = Float.valueOf(distanceET.getText().toString());
                     intent.putExtra("distance",distance);
                 } else {
