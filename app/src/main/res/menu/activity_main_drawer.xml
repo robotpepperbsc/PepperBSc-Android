@@ -5,43 +5,48 @@
 
     <item android:id="@+id/nav_connection"
 
-        android:title="IP connection"
+        android:title="Połączenie z serwerem"
         android:icon="@drawable/ic_settings_remote_black_24dp"
         />
 
 
-    <item android:title="Improvization">
+    <item android:title="Improwizacja">
         <menu>
             <item
                 android:id="@+id/nav_speech"
                 android:icon="@drawable/ic_record_voice_over_black_24dp"
-                android:title="Speech" />
+                android:title="Mowa" />
             <item
                 android:id="@+id/nav_movement"
                 android:icon="@drawable/ic_directions_walk_black_24dp"
-                android:title="Movement" />
+                android:title="Ruch" />
+            <item
+                android:id="@+id/nav_behaviors"
+                android:icon="@drawable/ic_insert_emoticon_grey_24dp"
+                android:title="Zachowania"/>
+
             <item
                 android:id="@+id/nav_display_on_screen"
                 android:icon="@drawable/ic_cast_black_24dp"
-                android:title="Display on the screen" />
+                android:title="Wyświetl zdjęcie/film" />
         </menu>
 
 
     </item>
 
-    <item android:title="Other">
+    <item android:title="Pozostałe">
             <menu>
                 <item android:id="@+id/nav_scenarios"
                     android:icon="@drawable/ic_assignment_black_24dp"
-                    android:title="Scenarios"/>
+                    android:title="Scenariusze"/>
 
                 <item android:id="@+id/nav_recordings"
-                    android:icon="@drawable/ic_movie_black_24dp"
-                    android:title="Recordings"/>
+                    android:icon="@drawable/ic_movie_orange_24dp"
+                    android:title="Nagrania"/>
 
             <item android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Settings"/>
+                android:title="Ustawienia"/>
         </menu>
     </item>
 
